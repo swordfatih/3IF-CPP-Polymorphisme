@@ -11,7 +11,7 @@
 #define LISTETRAJETS_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include <NoeudTrajet.h>
+#include "NoeudTrajet.h"
 
 //------------------------------------------------------------- Constantes
 

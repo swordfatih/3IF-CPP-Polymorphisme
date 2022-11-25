@@ -12,7 +12,7 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include <cstring>
-#include <Trajet.h>
+#include "Trajet.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -42,7 +42,7 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 
-    NoeudTrajet (const Trajet* trajet, const NoeudTrajet* prochain);
+    NoeudTrajet (Trajet* t, NoeudTrajet* p);
     // Mode d'emploi :
     //
     // Contrat :
@@ -54,7 +54,7 @@ public:
     // Contrat :
     //
 
-    NoeudTrajet* set_prochain(const NoeudTrajet* noeud);
+    NoeudTrajet* set_prochain(NoeudTrajet* noeud);
     // Mode d'emploi :
     //
     // Contrat :

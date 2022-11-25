@@ -33,7 +33,7 @@ using namespace std;
 
 //-------------------------------------------- Constructeurs - destructeur
 
-NoeudTrajet::NoeudTrajet (Trajet* trajet, NoeudTrajet* prochain)
+NoeudTrajet::NoeudTrajet (const Trajet* trajet, const NoeudTrajet* prochain = NULL) : trajet(trajet), prochain(prochain)
 // Algorithme :
 //
 {
@@ -55,11 +55,17 @@ NoeudTrajet::~NoeudTrajet ( )
 NoeudTrajet* NoeudTrajet::set_prochain(const NoeudTrajet* noeud)
 {
     prochain = noeud;
+    return prochain;
 }
 
 NoeudTrajet* NoeudTrajet::get_prochain()
 {
     return prochain;
+}
+
+NoeudTrajet* NoeudTrajet::get_trajet()
+{
+    return trajet;
 }
 
 

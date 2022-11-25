@@ -33,7 +33,7 @@ using namespace std;
 
 //-------------------------------------------- Constructeurs - destructeur
 
-ListeTrajets::ListeTrajets ( ) : premier(NULL), nb_trajets(0)
+ListeTrajets::ListeTrajets ( ) : premier(NULL), dernier(NULL), nb_trajets(0)
 // Algorithme :
 //
 {
@@ -52,6 +52,56 @@ ListeTrajets::~ListeTrajets ( )
 #endif
 } //----- Fin de ~ListeTrajets
 
+void ListeTrajets::ajouter(const Trajet* trajet)
+{
+    if(premier == NULL)
+    {
+        premier = new NoeudTrajet(trajet, NULL);
+        dernier = premier;
+    }
+    else
+    {
+        dernier = dernier->set_prochain(new NoeudTrajet(trajet, NULL));
+    }
+}
+
+const char* ListeTrajets::to_string()
+{
+    char* builder = new char[1];
+    builder[0] = '\0';
+
+    NoeudTrajet* curseur = premier;
+
+    while(curseur != dernier)
+    {
+        if(curseur->get_trajet())
+        {
+            const char* tmp = curseur->get_trajet()->to_string();
+
+            char* new_builder = new char[strlen(builder) + strlen(tmp) + 1];
+            new_builder[0] = '\0';
+
+            strcat(new_builder, builder);
+            strcat(new_builder, tmp);
+            
+            builder = new_builder;
+        }
+
+        curseur = curseur->get_prochain();
+    }
+
+    return builder;
+}
+
+NoeudTrajet* ListeTrajets::recherche_simple(const char* depart, const char* arrivee)
+{
+    return NULL;
+}
+
+NoeudTrajet* ListeTrajets::recherche_avancee(const char* depart, const char* arrivee)
+{
+    return NULL;
+}
 
 //------------------------------------------------------------------ PRIVE
 

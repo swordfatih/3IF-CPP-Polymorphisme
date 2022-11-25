@@ -53,6 +53,30 @@ public:
     // Contrat :
     //
 
+    void ajouter(const Trajet* trajet);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    const char* to_string();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    NoeudTrajet* recherche_simple(const char* depart, const char* arrivee);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    NoeudTrajet* recherche_avancee(const char* depart, const char* arrivee);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
 //------------------------------------------------------------------ PRIVE
 
 protected:
@@ -60,6 +84,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
     NoeudTrajet* premier;
+    NoeudTrajet* dernier;
     unsigned int nb_trajets;
 
 };

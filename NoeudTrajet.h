@@ -11,6 +11,7 @@
 #define NOEUDTRAJET_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include <cstring>
 #include <Trajet.h>
 
 //------------------------------------------------------------- Constantes
@@ -53,13 +54,19 @@ public:
     // Contrat :
     //
 
-    NoeudTrajet* set_prochain();
+    NoeudTrajet* set_prochain(const NoeudTrajet* noeud);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
     NoeudTrajet* get_prochain();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    Trajet* get_trajet();
     // Mode d'emploi :
     //
     // Contrat :

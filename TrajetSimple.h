@@ -1,29 +1,29 @@
 /*************************************************************************
-                           Trajet  -  description
+                           TrajetSimple  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
-#if ! defined ( TRAJET_H )
-#define TRAJET_H
-
+//---------- Interface de la classe <TrajetSimple> (fichier TrajetSimple.h) ----------------
+#if ! defined ( TRAJETSIMPLE_H )
+#define TRAJETSIMPLE_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include <cstring>
 
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Trajet>
+// Rôle de la classe <TrajetSimple>
 //
 //
 //------------------------------------------------------------------------
 
-class Trajet 
+class TrajetSimple 
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -34,26 +34,25 @@ public:
     //
     // Contrat :
     //
+    const char* get_depart();
+    const char* get_arrivee();
+    const char* to_string();
 
 
-    virtual const char* get_depart() = 0;
-    virtual const char* get_arrivee() = 0;
-    virtual const char* to_string() = 0;
 
 //------------------------------------------------- Surcharge d'opérateurs
-   
-
+    
 
 //-------------------------------------------- Constructeurs - destructeur
-   
+    
 
-    Trajet ( );
+    TrajetSimple (const char* depart, const char* arrivee);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Trajet ( );
+    virtual ~TrajetSimple ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -65,9 +64,11 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+    char* depart;
+    char* arrivee;
 
 };
 
-//-------------------------------- Autres définitions dépendantes de <Trajet>
+//-------------------------------- Autres définitions dépendantes de <TrajetSimple>
 
-#endif // TRAJET_H
+#endif // TRAJETSIMPLE_H

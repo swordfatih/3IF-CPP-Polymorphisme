@@ -11,6 +11,7 @@
 #define LISTETRAJETS_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include <NoeudTrajet.h>
 
 //------------------------------------------------------------- Constantes
 
@@ -22,7 +23,7 @@
 //
 //------------------------------------------------------------------------
 
-class ListeTrajets : public Ancetre
+class ListeTrajets
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -36,19 +37,9 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    ListeTrajets & operator = ( const ListeTrajets & unListeTrajets );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    ListeTrajets ( const ListeTrajets & unListeTrajets );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
 
     ListeTrajets ( );
     // Mode d'emploi :
@@ -68,6 +59,8 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+    NoeudTrajet* premier;
+    unsigned int nb_trajets;
 
 };
 

@@ -30,25 +30,10 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-NoeudTrajet & NoeudTrajet::operator = ( const NoeudTrajet & unNoeudTrajet )
-// Algorithme :
-//
-{
-} //----- Fin de operator =
-
 
 //-------------------------------------------- Constructeurs - destructeur
-NoeudTrajet::NoeudTrajet ( const NoeudTrajet & unNoeudTrajet )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <NoeudTrajet>" << endl;
-#endif
-} //----- Fin de NoeudTrajet (constructeur de copie)
 
-
-NoeudTrajet::NoeudTrajet ( )
+NoeudTrajet::NoeudTrajet (Trajet* trajet, NoeudTrajet* prochain)
 // Algorithme :
 //
 {
@@ -66,6 +51,16 @@ NoeudTrajet::~NoeudTrajet ( )
     cout << "Appel au destructeur de <NoeudTrajet>" << endl;
 #endif
 } //----- Fin de ~NoeudTrajet
+
+NoeudTrajet* NoeudTrajet::set_prochain(const NoeudTrajet* noeud)
+{
+    prochain = noeud;
+}
+
+NoeudTrajet* NoeudTrajet::get_prochain()
+{
+    return prochain;
+}
 
 
 //------------------------------------------------------------------ PRIVE

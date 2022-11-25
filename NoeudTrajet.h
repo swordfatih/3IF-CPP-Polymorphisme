@@ -11,6 +11,7 @@
 #define NOEUDTRAJET_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include <Trajet.h>
 
 //------------------------------------------------------------- Constantes
 
@@ -22,7 +23,7 @@
 //
 //------------------------------------------------------------------------
 
-class NoeudTrajet : public Ancetre
+class NoeudTrajet
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -36,21 +37,11 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    NoeudTrajet & operator = ( const NoeudTrajet & unNoeudTrajet );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    NoeudTrajet ( const NoeudTrajet & unNoeudTrajet );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
 
-    NoeudTrajet ( );
+    NoeudTrajet (const Trajet* trajet, const NoeudTrajet* prochain);
     // Mode d'emploi :
     //
     // Contrat :
@@ -62,12 +53,26 @@ public:
     // Contrat :
     //
 
+    NoeudTrajet* set_prochain();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    NoeudTrajet* get_prochain();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
 //------------------------------------------------------------------ PRIVE
 
 protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+    NoeudTrajet* prochain;
+    Trajet* trajet;
 
 };
 

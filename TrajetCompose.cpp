@@ -1,12 +1,12 @@
 /*************************************************************************
-                           TrajetSimple  -  description
+                           TrajetCompose  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <TrajetSimple> (fichier TrajetSimple.cpp) ------------
+//---------- Réalisation de la classe <TrajetCompose> (fichier TrajetCompose.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -15,14 +15,14 @@ using namespace std;
 #include <iostream>
 
 //------------------------------------------------------ Include personnel
-#include "TrajetSimple.h"
+#include "TrajetCompose.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type TrajetSimple::Méthode ( liste des paramètres )
+// type TrajetCompose::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
@@ -34,45 +34,45 @@ using namespace std;
 //-------------------------------------------- Constructeurs - destructeur
 
 
-TrajetSimple::TrajetSimple ( const char* depart, const char* arrivee)
+TrajetCompose::TrajetCompose ( const char* depart, const char* arrivee)
 // Algorithme :
 //  
 
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <TrajetSimple>" << endl;
+    cout << "Appel au constructeur de <TrajetCompose>" << endl;
 #endif
 
     this->depart = new char[strlen(depart)];
     strcpy(this->depart, depart);
     this->arrivee = new char[strlen(arrivee)];
     strcpy(this->arrivee, arrivee);
-} //----- Fin de TrajetSimple
+} //----- Fin de TrajetCompose
 
 
-TrajetSimple::~TrajetSimple ( )
+TrajetCompose::~TrajetCompose ( )
 // Algorithme :
 //
 
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <TrajetSimple>" << endl;
+    cout << "Appel au destructeur de <TrajetCompose>" << endl;
 #endif
-} //----- Fin de ~TrajetSimple
+} //----- Fin de ~TrajetCompose
 
-const char* TrajetSimple::get_depart()
+const char* TrajetCompose::get_depart()
 {
     return depart;
 }
 
-const char* TrajetSimple::get_arrivee() 
+const char* TrajetCompose::get_arrivee() 
 {
     return arrivee;
 }
 
-const char* TrajetSimple::to_string()
+const char* TrajetCompose::to_string()
 {
-    return "trajetsimple";
+    return "trajetcompose";
 }
 
 

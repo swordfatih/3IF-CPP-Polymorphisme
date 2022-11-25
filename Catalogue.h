@@ -11,6 +11,7 @@
 #define CATALOGUE_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include "ListeTrajets.h"
 
 //------------------------------------------------------------- Constantes
 

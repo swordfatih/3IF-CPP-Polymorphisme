@@ -1,17 +1,27 @@
-main.o: Trajet.o Catalogue.o TrajetSimple.o TrajetCompose.o main.cpp
-	g++ -o output.exe Trajet.o NoeudTrajet.o ListeTrajets.o Catalogue.o TrajetSimple.o TrajetCompose.o main.cpp -ansi -pedantic -Wall -std=c++11
+main : main.o Trajet.o NoeudTrajet.o ListeTrajets.o Catalogue.o TrajetSimple.o TrajetCompose.o
+	g++ -o main main.o Trajet.o NoeudTrajet.o ListeTrajets.o Catalogue.o TrajetSimple.o TrajetCompose.o
 
-Trajet.o: Trajet.cpp NoeudTrajet.cpp ListeTrajets.cpp
-	g++ -c Trajet.cpp NoeudTrajet.cpp ListeTrajets.cpp -ansi -pedantic -Wall -std=c++11
 
-Catalogue.o: Catalogue.cpp
+main.o : main.cpp
+	g++ -c main.cpp -ansi -pedantic -Wall -std=c++11
+
+Trajet.o : Trajet.cpp
+	g++ -c Trajet.cpp -ansi -pedantic -Wall -std=c++11
+
+NoeudTrajet.o : NoeudTrajet.cpp
+	g++ -c NoeudTrajet.cpp -ansi -pedantic -Wall -std=c++11
+
+ListeTrajets.o : ListeTrajets.cpp
+	g++ -c ListeTrajets.cpp -ansi -pedantic -Wall -std=c++11
+
+Catalogue.o : Catalogue.cpp
 	g++ -c Catalogue.cpp -ansi -pedantic -Wall -std=c++11
 
-TrajetSimple.o: TrajetSimple.cpp	
+TrajetSimple.o : TrajetSimple.cpp
 	g++ -c TrajetSimple.cpp -ansi -pedantic -Wall -std=c++11
 
-TrajetCompose.o: TrajetCompose.cpp
+TrajetCompose.o : TrajetCompose.cpp
 	g++ -c TrajetCompose.cpp -ansi -pedantic -Wall -std=c++11
 
-clean:
+clean :
 	rm -rf *.o

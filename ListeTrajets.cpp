@@ -33,7 +33,7 @@ using namespace std;
 
 //-------------------------------------------- Constructeurs - destructeur
 
-ListeTrajets::ListeTrajets ( ) : premier(NULL), dernier(NULL), nb_trajets(0)
+ListeTrajets::ListeTrajets ( ) : premier(nullptr), dernier(nullptr), nb_trajets(0)
 // Algorithme :
 //
 {
@@ -52,42 +52,57 @@ ListeTrajets::~ListeTrajets ( )
 #endif
 } //----- Fin de ~ListeTrajets
 
+NoeudTrajet* ListeTrajets::get_premier() const
+{
+    return premier;
+}
+
+NoeudTrajet* ListeTrajets::get_dernier() const
+{
+    return dernier;
+}
+
 void ListeTrajets::ajouter(const Trajet* trajet)
 {
-    if(premier == NULL)
+    if(premier == nullptr)
     {
-        premier = new NoeudTrajet(trajet, NULL);
+        premier = new NoeudTrajet(trajet, nullptr);
         dernier = premier;
     }
     else
     {
-        dernier = dernier->set_prochain(new NoeudTrajet(trajet, NULL));
+        dernier = dernier->set_prochain(new NoeudTrajet(trajet, nullptr));
     }
 }
 
-const char* ListeTrajets::to_string()
+const char* ListeTrajets::to_string() const
 {
     char* builder = new char[1];
     builder[0] = '\0';
 
     NoeudTrajet* curseur = premier;
 
-    while(curseur != dernier)
+    while(curseur != nullptr)
     {
-        if(curseur->get_trajet())
+        if(curseur->get_trajet() != nullptr)
         {
             const char* tmp = curseur->get_trajet()->to_string();
+            char* old_builder = builder;
 
-            char* new_builder = new char[strlen(builder) + strlen(tmp) + 1];
-            new_builder[0] = '\0';
-
-            strcat(new_builder, builder);
-            strcat(new_builder, tmp);
+            builder = new char[strlen(builder) + strlen(tmp) + 1];
+            builder[0] = '\0';
             
-            builder = new_builder;
+            strcat(builder, old_builder);
+            strcat(builder, tmp);
+            strcat(builder, "\n");
+
+            delete old_builder;
         }
 
         curseur = curseur->get_prochain();
+
+        if(curseur == dernier)
+            break;
     }
 
     return builder;
@@ -95,12 +110,12 @@ const char* ListeTrajets::to_string()
 
 NoeudTrajet* ListeTrajets::recherche_simple(const char* depart, const char* arrivee)
 {
-    return NULL;
+    return nullptr;
 }
 
 NoeudTrajet* ListeTrajets::recherche_avancee(const char* depart, const char* arrivee)
 {
-    return NULL;
+    return nullptr;
 }
 
 //------------------------------------------------------------------ PRIVE

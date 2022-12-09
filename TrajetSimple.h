@@ -11,6 +11,7 @@
 #define TRAJETSIMPLE_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include "Trajet.h"
 #include <cstring>
 
 //------------------------------------------------------------- Constantes
@@ -23,7 +24,7 @@
 //
 //------------------------------------------------------------------------
 
-class TrajetSimple 
+class TrajetSimple : public Trajet
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -36,7 +37,7 @@ public:
     //
     const char* get_depart();
     const char* get_arrivee();
-    const char* to_string();
+    const char* to_string() const;
 
 
 

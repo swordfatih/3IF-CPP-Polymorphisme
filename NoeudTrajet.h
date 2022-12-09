@@ -42,7 +42,7 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 
-    NoeudTrajet (Trajet* t, NoeudTrajet* p);
+    NoeudTrajet (const Trajet* t, NoeudTrajet* p);
     // Mode d'emploi :
     //
     // Contrat :
@@ -66,7 +66,7 @@ public:
     // Contrat :
     //
 
-    Trajet* get_trajet();
+    const Trajet* get_trajet();
     // Mode d'emploi :
     //
     // Contrat :
@@ -79,7 +79,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
     NoeudTrajet* prochain;
-    Trajet* trajet;
+    const Trajet* trajet;
 
 };
 

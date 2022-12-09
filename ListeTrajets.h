@@ -59,7 +59,11 @@ public:
     // Contrat :
     //
 
-    const char* to_string();
+    NoeudTrajet* get_premier() const;
+
+    NoeudTrajet* get_dernier() const;
+
+    const char* to_string() const;
     // Mode d'emploi :
     //
     // Contrat :

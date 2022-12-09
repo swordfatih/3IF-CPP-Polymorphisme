@@ -11,6 +11,8 @@
 #define TRAJETCOMPOSE_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include "Trajet.h"
+#include "ListeTrajets.h"
 #include <cstring>
 
 //------------------------------------------------------------- Constantes
@@ -23,7 +25,7 @@
 //
 //------------------------------------------------------------------------
 
-class TrajetCompose 
+class TrajetCompose : public Trajet
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -36,7 +38,7 @@ public:
     //
     const char* get_depart();
     const char* get_arrivee();
-    const char* to_string();
+    const char* to_string() const;
 
 
 
@@ -46,7 +48,7 @@ public:
 //-------------------------------------------- Constructeurs - destructeur
     
 
-    TrajetCompose (const char* depart, const char* arrivee);
+    TrajetCompose (const ListeTrajets& liste);
     // Mode d'emploi :
     //
     // Contrat :
@@ -64,8 +66,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    char* depart;
-    char* arrivee;
+    const ListeTrajets trajets;
 
 };
 

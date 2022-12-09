@@ -34,7 +34,7 @@ using namespace std;
 //-------------------------------------------- Constructeurs - destructeur
 
 
-TrajetCompose::TrajetCompose ( const char* depart, const char* arrivee)
+TrajetCompose::TrajetCompose (const ListeTrajets& liste) : trajets(liste)
 // Algorithme :
 //  
 
@@ -42,11 +42,6 @@ TrajetCompose::TrajetCompose ( const char* depart, const char* arrivee)
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetCompose>" << endl;
 #endif
-
-    this->depart = new char[strlen(depart)];
-    strcpy(this->depart, depart);
-    this->arrivee = new char[strlen(arrivee)];
-    strcpy(this->arrivee, arrivee);
 } //----- Fin de TrajetCompose
 
 
@@ -62,17 +57,17 @@ TrajetCompose::~TrajetCompose ( )
 
 const char* TrajetCompose::get_depart()
 {
-    return depart;
+    return trajets.get_premier()->get_trajet()->to_string();
 }
 
 const char* TrajetCompose::get_arrivee() 
 {
-    return arrivee;
+    return trajets.get_dernier()->get_trajet()->to_string();
 }
 
-const char* TrajetCompose::to_string()
+const char* TrajetCompose::to_string() const
 {
-    return "trajetcompose";
+    return trajets.to_string();
 }
 
 

@@ -1,7 +1,6 @@
 main : main.o Trajet.o NoeudTrajet.o ListeTrajets.o Catalogue.o TrajetSimple.o TrajetCompose.o
 	g++ -o main main.o Trajet.o NoeudTrajet.o ListeTrajets.o Catalogue.o TrajetSimple.o TrajetCompose.o
 
-
 main.o : main.cpp
 	g++ -c main.cpp -ansi -pedantic -Wall -std=c++11
 

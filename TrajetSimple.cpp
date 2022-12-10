@@ -58,6 +58,9 @@ TrajetSimple::~TrajetSimple ( )
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetSimple>" << endl;
 #endif
+
+    delete[] depart;
+    delete[] arrivee;
 } //----- Fin de ~TrajetSimple
 
 const char* TrajetSimple::get_depart() const

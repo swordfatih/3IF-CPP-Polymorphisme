@@ -34,7 +34,7 @@ using namespace std;
 //-------------------------------------------- Constructeurs - destructeur
 
 
-TrajetCompose::TrajetCompose (const ListeTrajets& liste) : trajets(liste)
+TrajetCompose::TrajetCompose (const ListeTrajets* liste) : trajets(liste)
 // Algorithme :
 //  
 
@@ -53,16 +53,18 @@ TrajetCompose::~TrajetCompose ( )
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetCompose>" << endl;
 #endif
+
+    delete trajets;
 } //----- Fin de ~TrajetCompose
 
 const char* TrajetCompose::get_depart() const
 {
-    return trajets.get_premier()->get_trajet()->to_string();
+    return trajets->get_premier()->get_trajet()->get_depart();
 }
 
 const char* TrajetCompose::get_arrivee() const
 {
-    return trajets.get_dernier()->get_trajet()->to_string();
+    return trajets->get_dernier()->get_trajet()->get_arrivee();
 }
 
 static char* concatener(char* source, const char* first, const char* second = "")
@@ -85,14 +87,14 @@ const char* TrajetCompose::to_string() const
     builder[0] = '[';
     builder[1] = '\0';
 
-    NoeudTrajet* curseur = trajets.get_premier();
+    NoeudTrajet* curseur = trajets->get_premier();
 
     if(curseur == nullptr)
         return builder;
 
     while(true)
     {
-        builder = concatener(builder, curseur == trajets.get_premier() ? "" : " -> ", curseur->get_trajet()->get_depart());
+        builder = concatener(builder, curseur == trajets->get_premier() ? "" : " -> ", curseur->get_trajet()->get_depart());
 
         if(curseur->get_prochain() == nullptr)
             break;
@@ -103,8 +105,6 @@ const char* TrajetCompose::to_string() const
     builder = concatener(builder, " -> ", curseur->get_trajet()->get_arrivee());
     return concatener(builder, "]");
 }
-
-
 
 //------------------------------------------------------------------ PRIVE
 

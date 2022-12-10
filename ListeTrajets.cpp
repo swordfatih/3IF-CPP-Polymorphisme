@@ -50,6 +50,16 @@ ListeTrajets::~ListeTrajets ( )
 #ifdef MAP
     cout << "Appel au destructeur de <ListeTrajets>" << endl;
 #endif
+
+    NoeudTrajet* curseur = premier;
+
+    while(curseur != nullptr)
+    {
+        NoeudTrajet* old = curseur;
+        delete old;
+
+        curseur = curseur->get_prochain();
+    }
 } //----- Fin de ~ListeTrajets
 
 NoeudTrajet* ListeTrajets::get_premier() const
@@ -60,6 +70,11 @@ NoeudTrajet* ListeTrajets::get_premier() const
 NoeudTrajet* ListeTrajets::get_dernier() const
 {
     return dernier;
+}
+
+int ListeTrajets::get_size() const
+{
+    return nb_trajets;
 }
 
 void ListeTrajets::ajouter(const Trajet* trajet)
@@ -73,6 +88,8 @@ void ListeTrajets::ajouter(const Trajet* trajet)
     {
         dernier = dernier->set_prochain(new NoeudTrajet(trajet, nullptr));
     }
+
+    nb_trajets++;
 }
 
 NoeudTrajet* ListeTrajets::recherche_simple(const char* depart, const char* arrivee)

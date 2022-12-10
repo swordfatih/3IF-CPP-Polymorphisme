@@ -61,6 +61,7 @@ public:
 
     NoeudTrajet* get_premier() const;
     NoeudTrajet* get_dernier() const;
+    int get_size() const;
 
     NoeudTrajet* recherche_simple(const char* depart, const char* arrivee);
     // Mode d'emploi :

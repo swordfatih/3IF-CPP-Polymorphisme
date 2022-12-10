@@ -51,8 +51,7 @@ NoeudTrajet::~NoeudTrajet ( )
     cout << "Appel au destructeur de <NoeudTrajet>" << endl;
 #endif
 
-    if(trajet != nullptr)
-        delete trajet;
+    delete trajet;
 } //----- Fin de ~NoeudTrajet
 
 NoeudTrajet* NoeudTrajet::set_prochain(NoeudTrajet* noeud)

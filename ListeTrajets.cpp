@@ -56,9 +56,8 @@ ListeTrajets::~ListeTrajets ( )
     while(curseur != nullptr)
     {
         NoeudTrajet* old = curseur;
-        delete old;
-
         curseur = curseur->get_prochain();
+        delete old;
     }
 } //----- Fin de ~ListeTrajets
 

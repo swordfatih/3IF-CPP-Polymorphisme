@@ -43,9 +43,9 @@ TrajetSimple::TrajetSimple ( const char* depart, const char* arrivee)
     cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
 
-    this->depart = new char[strlen(depart)];
+    this->depart = new char[strlen(depart) + 1];
     strcpy(this->depart, depart);
-    this->arrivee = new char[strlen(arrivee)];
+    this->arrivee = new char[strlen(arrivee) + 1];
     strcpy(this->arrivee, arrivee);
 } //----- Fin de TrajetSimple
 

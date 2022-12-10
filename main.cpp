@@ -23,7 +23,7 @@ static void ajouter_simple(ListeTrajets& liste);
 static void ajouter_compose(ListeTrajets& liste);
 static void afficher(const ListeTrajets& liste);
 static void recherche_simple(const ListeTrajets& liste);
-static void recherche_avancee(const ListeTrajets& liste);
+// static void recherche_avancee(const ListeTrajets& liste);
 
 // Point d'entrée
 int main()
@@ -50,7 +50,7 @@ int main()
                 recherche_simple(liste);
                 break;
             case RECHERCHE_AVANCEE:
-                recherche_avancee(liste);
+                //recherche_avancee(liste);
                 break;
             case QUITTER:
                 open = false;
@@ -116,7 +116,7 @@ static void ajouter_compose(ListeTrajets& liste)
     
     std::cin >> precedent;
 
-    for(int i = 0; i < nombre; ++i)
+    for(unsigned int i = 0; i < nombre; ++i)
     {
         std::cin >> suivant;
 
@@ -140,7 +140,10 @@ static void afficher(const ListeTrajets& liste)
 
     while(curseur != nullptr)
     {
-        std::cout << curseur->get_trajet()->to_string() << std::endl;
+        const char* output = curseur->get_trajet()->to_string();
+        std::cout << output << std::endl;
+        delete[] output;
+
         curseur = curseur->get_prochain();
     }
 }
@@ -161,7 +164,10 @@ static void recherche_simple(const ListeTrajets& liste)
     {
         if(strcmp(curseur->get_trajet()->get_depart(), depart) == 0 && strcmp(curseur->get_trajet()->get_arrivee(), arrivee) == 0)
         {
-            std::cout << curseur->get_trajet()->to_string() << std::endl;
+            const char* output = curseur->get_trajet()->to_string();
+            std::cout << output << std::endl;
+            delete[] output;
+
             found = true;
         }
 
@@ -172,7 +178,7 @@ static void recherche_simple(const ListeTrajets& liste)
         std::cout << "Aucun trajet ne correspond a votre recherche.." << std::endl;
 }
 
-static bool recherche_depart(const ListeTrajets& liste, const char* depart, int (*indexes)[], int depth)
+/*static bool recherche_depart(const ListeTrajets& liste, const char* depart, int (*indexes)[], int depth)
 {
     NoeudTrajet* curseur = liste.get_premier();
 
@@ -192,7 +198,7 @@ static bool recherche_depart(const ListeTrajets& liste, const char* depart, int 
         found |= (*indexes)[i] > depth;
 
     return found;
-}
+}*/
 
 /*
 static void recherche_avancee(const ListeTrajets& liste)

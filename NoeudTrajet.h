@@ -78,8 +78,8 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    NoeudTrajet* prochain;
     const Trajet* trajet;
+    NoeudTrajet* prochain;
 
 };
 

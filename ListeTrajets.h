@@ -60,14 +60,7 @@ public:
     //
 
     NoeudTrajet* get_premier() const;
-
     NoeudTrajet* get_dernier() const;
-
-    const char* to_string() const;
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
     NoeudTrajet* recherche_simple(const char* depart, const char* arrivee);
     // Mode d'emploi :

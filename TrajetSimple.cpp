@@ -60,12 +60,12 @@ TrajetSimple::~TrajetSimple ( )
 #endif
 } //----- Fin de ~TrajetSimple
 
-const char* TrajetSimple::get_depart()
+const char* TrajetSimple::get_depart() const
 {
     return depart;
 }
 
-const char* TrajetSimple::get_arrivee() 
+const char* TrajetSimple::get_arrivee() const
 {
     return arrivee;
 }

@@ -36,8 +36,8 @@ public:
     //
     // Contrat :
     //
-    const char* get_depart();
-    const char* get_arrivee();
+    const char* get_depart() const;
+    const char* get_arrivee() const;
     const char* to_string() const;
 
 

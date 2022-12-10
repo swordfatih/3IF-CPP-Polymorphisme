@@ -75,39 +75,6 @@ void ListeTrajets::ajouter(const Trajet* trajet)
     }
 }
 
-const char* ListeTrajets::to_string() const
-{
-    char* builder = new char[1];
-    builder[0] = '\0';
-
-    NoeudTrajet* curseur = premier;
-
-    while(curseur != nullptr)
-    {
-        if(curseur->get_trajet() != nullptr)
-        {
-            const char* tmp = curseur->get_trajet()->to_string();
-            char* old_builder = builder;
-
-            builder = new char[strlen(builder) + strlen(tmp) + 1];
-            builder[0] = '\0';
-            
-            strcat(builder, old_builder);
-            strcat(builder, tmp);
-            strcat(builder, "\n");
-
-            delete old_builder;
-        }
-
-        curseur = curseur->get_prochain();
-
-        if(curseur == dernier)
-            break;
-    }
-
-    return builder;
-}
-
 NoeudTrajet* ListeTrajets::recherche_simple(const char* depart, const char* arrivee)
 {
     return nullptr;

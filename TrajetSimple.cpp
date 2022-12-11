@@ -59,6 +59,7 @@ TrajetSimple::~TrajetSimple ( )
 
     delete[] depart;
     delete[] arrivee;
+    delete[] moyen_de_transport;
 } //----- Fin de ~TrajetSimple
 
 const char* TrajetSimple::get_depart() const

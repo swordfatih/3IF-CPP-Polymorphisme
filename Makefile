@@ -9,5 +9,5 @@ main: $(OBJECTS)
 $(OBJECTS): $(@: .o = .cpp)
 	$(CXX) -c $(patsubst %.o, %.cpp, $@) $(CPPFLAGS) 
 
-clean :
+clean:
 	rm -rf $(OBJECTS) $(OUTPUT)

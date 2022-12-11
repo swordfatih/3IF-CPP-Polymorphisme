@@ -46,7 +46,7 @@ public:
 //-------------------------------------------- Constructeurs - destructeur
     
 
-    TrajetCompose (const ListeTrajets* liste);
+    TrajetCompose (const ListeTrajets* trajets);
     // Mode d'emploi :
     //
     // Contrat :

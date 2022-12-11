@@ -41,7 +41,7 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 
-    ListeTrajets ( );
+    ListeTrajets (const bool proprietaire = true);
     // Mode d'emploi :
     //
     // Contrat :
@@ -57,7 +57,7 @@ public:
 
     ListeTrajets& operator=(const ListeTrajets& autre);
 
-    void ajouter(const Trajet* trajet, const bool proprietaire = true);
+    void ajouter(const Trajet* trajet);
     // Mode d'emploi :
     //
     // Contrat :
@@ -88,6 +88,7 @@ protected:
     NoeudTrajet* premier;
     NoeudTrajet* dernier;
     unsigned int nb_trajets;
+    const bool proprietaire;
 
 };
 

@@ -45,7 +45,7 @@ public:
 //-------------------------------------------- Constructeurs - destructeur
     
 
-    TrajetSimple (const char* depart, const char* arrivee);
+    TrajetSimple (const char* depart, const char* arrivee, const char* moyen_de_transport);
     // Mode d'emploi :
     //
     // Contrat :
@@ -63,8 +63,9 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    char* depart;
-    char* arrivee;
+    const char* depart;
+    const char* arrivee;
+    const char* moyen_de_transport;
 
 };
 

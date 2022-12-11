@@ -34,7 +34,10 @@ using namespace std;
 //-------------------------------------------- Constructeurs - destructeur
 
 
-TrajetSimple::TrajetSimple (const char* depart, const char* arrivee)
+TrajetSimple::TrajetSimple (const char* depart, const char* arrivee, const char* moyen_de_transport) : 
+    depart(std::strcpy(new char[std::strlen(depart) + 1], depart)), 
+    arrivee(std::strcpy(new char[std::strlen(arrivee) + 1], arrivee)),
+    moyen_de_transport(std::strcpy(new char[std::strlen(moyen_de_transport) + 1], moyen_de_transport))
 // Algorithme :
 //  
 
@@ -42,11 +45,6 @@ TrajetSimple::TrajetSimple (const char* depart, const char* arrivee)
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
-
-    this->depart = new char[strlen(depart) + 1];
-    strcpy(this->depart, depart);
-    this->arrivee = new char[strlen(arrivee) + 1];
-    strcpy(this->arrivee, arrivee);
 } //----- Fin de TrajetSimple
 
 
@@ -75,7 +73,7 @@ const char* TrajetSimple::get_arrivee() const
 
 void TrajetSimple::afficher(std::ostream& sortie) const
 {
-    sortie << "[" << depart << " -> " << arrivee << "]";
+    sortie << "de " << depart << " vers " << arrivee << " en " << moyen_de_transport;
 }
 
 //------------------------------------------------------------------ PRIVE

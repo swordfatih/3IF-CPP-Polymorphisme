@@ -33,7 +33,7 @@ using namespace std;
 
 //-------------------------------------------- Constructeurs - destructeur
 
-ListeTrajets::ListeTrajets ( ) : premier(nullptr), dernier(nullptr), nb_trajets(0)
+ListeTrajets::ListeTrajets (const bool proprietaire) : premier(nullptr), dernier(nullptr), nb_trajets(0), proprietaire(proprietaire)
 // Algorithme :
 //
 {
@@ -42,7 +42,7 @@ ListeTrajets::ListeTrajets ( ) : premier(nullptr), dernier(nullptr), nb_trajets(
 #endif
 } //----- Fin de ListeTrajets
 
-ListeTrajets::ListeTrajets (const ListeTrajets& autre) : premier(nullptr), dernier(nullptr), nb_trajets(0)
+ListeTrajets::ListeTrajets (const ListeTrajets& autre) : premier(nullptr), dernier(nullptr), nb_trajets(0), proprietaire(false)
 // Algorithme :
 //
 {
@@ -78,7 +78,7 @@ ListeTrajets& ListeTrajets::operator=(const ListeTrajets& autre)
 
     while(curseur != nullptr)
     {
-        ajouter(curseur->get_trajet(), false);
+        ajouter(curseur->get_trajet());
         curseur = curseur->get_prochain();
     }
 
@@ -100,7 +100,7 @@ int ListeTrajets::get_size() const
     return nb_trajets;
 }
 
-void ListeTrajets::ajouter(const Trajet* trajet, const bool proprietaire)
+void ListeTrajets::ajouter(const Trajet* trajet)
 {
     if(premier == nullptr)
     {

@@ -34,7 +34,8 @@ using namespace std;
 //-------------------------------------------- Constructeurs - destructeur
 
 
-TrajetCompose::TrajetCompose (const ListeTrajets* liste) : trajets(liste)
+TrajetCompose::TrajetCompose (const ListeTrajets* trajets) : 
+    trajets(trajets)
 // Algorithme :
 //  
 
@@ -71,19 +72,15 @@ void TrajetCompose::afficher(std::ostream& sortie) const
 {
     NoeudTrajet* curseur = trajets->get_premier();
 
-    sortie << "[";
-
     while(curseur != nullptr)
     {
         if(curseur != trajets->get_premier())
-            sortie << " -> ";
+            sortie << " - ";
 
-        sortie << curseur->get_trajet()->get_depart();
+        curseur->get_trajet()->afficher(sortie);
 
         curseur = curseur->get_prochain();
     }
-
-    sortie << " -> " << trajets->get_dernier()->get_trajet()->get_arrivee() << "]";
 }
 
 //------------------------------------------------------------------ PRIVE

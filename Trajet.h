@@ -38,7 +38,7 @@ public:
 
     virtual const char* get_depart() const = 0;
     virtual const char* get_arrivee() const = 0;
-    virtual const char* to_string() const = 0;
+    virtual void afficher(std::ostream& sortie) const = 0;
 
 //------------------------------------------------- Surcharge d'opérateurs
    

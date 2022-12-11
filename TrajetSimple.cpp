@@ -73,25 +73,10 @@ const char* TrajetSimple::get_arrivee() const
     return arrivee;
 }
 
-const char* TrajetSimple::to_string() const
+void TrajetSimple::afficher(std::ostream& sortie) const
 {
-    const char* prefixe = "[";
-    const char* milieu = " -> ";
-    const char* suffixe = "]";
-
-    char* builder = new char[strlen(prefixe) + strlen(depart) + strlen(milieu) + strlen(arrivee) + strlen(suffixe) + 1];
-    builder[0] = '\0';
-
-    strcat(builder, prefixe);
-    strcat(builder, depart);
-    strcat(builder, milieu);
-    strcat(builder, arrivee);
-    strcat(builder, suffixe);
-
-    return builder;
+    sortie << "[" << depart << " -> " << arrivee << "]";
 }
-
-
 
 //------------------------------------------------------------------ PRIVE
 

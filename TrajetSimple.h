@@ -37,9 +37,7 @@ public:
     //
     const char* get_depart() const;
     const char* get_arrivee() const;
-    const char* to_string() const;
-
-
+    void afficher(std::ostream& sortie) const;
 
 //------------------------------------------------- Surcharge d'opérateurs
     

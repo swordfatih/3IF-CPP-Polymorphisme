@@ -12,6 +12,9 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "ListeTrajets.h"
+#include "TrajetCompose.h"
+#include "TrajetSimple.h"
+#include <iostream>
 
 //------------------------------------------------------------- Constantes
 
@@ -35,9 +38,11 @@ public:
     // Contrat :
     //
 
-
-
-
+    void ajouter_simple();
+    void ajouter_compose();
+    void afficher();
+    void recherche_simple();
+    // void recherche_avancee(const ListeTrajets& liste);
 
 //-------------------------------------------- Constructeurs - destructeur
     

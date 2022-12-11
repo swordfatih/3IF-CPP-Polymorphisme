@@ -1,7 +1,5 @@
 // Inclusions locales
-#include "ListeTrajets.h"
-#include "TrajetSimple.h"
-#include "TrajetCompose.h"
+#include "Catalogue.h"
 
 // Inclusions standards
 #include <iostream>
@@ -19,16 +17,11 @@ enum Interaction
 
 // Prototypes
 const Interaction menu();
-static void ajouter_simple(ListeTrajets& liste);
-static void ajouter_compose(ListeTrajets& liste);
-static void afficher(const ListeTrajets& liste);
-static void recherche_simple(const ListeTrajets& liste);
-// static void recherche_avancee(const ListeTrajets& liste);
 
 // Point d'entrée
 int main()
 {
-    ListeTrajets liste;
+    Catalogue catalogue;
 
     bool open = true;
     while(open)
@@ -38,19 +31,19 @@ int main()
         switch(choix)
         {
             case AJOUTER_SIMPLE:
-                ajouter_simple(liste);
+                catalogue.ajouter_simple();
                 break;
             case AJOUTER_COMPOSE:
-                ajouter_compose(liste);
+                catalogue.ajouter_compose();
                 break;
             case AFFICHER:
-                afficher(liste);
+                catalogue.afficher();
                 break;
             case RECHERCHE_SIMPLE:
-                recherche_simple(liste);
+                catalogue.recherche_simple();
                 break;
             case RECHERCHE_AVANCEE:
-                //recherche_avancee(liste);
+                //catalogue.recherche_avancee();
                 break;
             case QUITTER:
                 open = false;
@@ -90,158 +83,3 @@ const Interaction menu()
 
     return static_cast<Interaction>(choix);
 }
-
-static void ajouter_simple(ListeTrajets& liste)
-{
-    char depart[46]; // parfait pour contenir Saint-Remy-en-Bouzemont-Saint-Genest-et-Isson
-    char arrivee[46];
-
-    std::cout << "Saisir la ville de depart et la ville d'arrivee: ";
-    std::cin >> depart >> arrivee;
-
-    liste.ajouter(new TrajetSimple(depart, arrivee));
-}
-
-static void ajouter_compose(ListeTrajets& liste)
-{
-    ListeTrajets* liste_composee = new ListeTrajets;
-
-    std::cout << "Combien d'etapes possede le trajet: ";
-
-    unsigned int nombre;
-    std::cin >> nombre;
-
-    std::cout << "Veuillez saisir dans l'ordre les " << (nombre + 1) << " villes parcourues par votre trajet: ";
-    char precedent[46], suivant[46];
-    
-    std::cin >> precedent;
-
-    for(unsigned int i = 0; i < nombre; ++i)
-    {
-        std::cin >> suivant;
-
-        if(strcmp(precedent, suivant) == 0)
-        {
-            std::cout << "Un trajet ne peut pas aller d'une ville vers elle meme. Veuillez reessayer." << std::endl;
-            delete liste_composee;
-            return;
-        }
-
-        liste_composee->ajouter(new TrajetSimple(precedent, suivant));
-        strcpy(precedent, suivant);
-    }
-
-    liste.ajouter(new TrajetCompose(liste_composee));
-}
-
-static void afficher(const ListeTrajets& liste)
-{
-    NoeudTrajet* curseur = liste.get_premier();
-
-    while(curseur != nullptr)
-    {
-        const char* output = curseur->get_trajet()->to_string();
-        std::cout << output << std::endl;
-        delete[] output;
-
-        curseur = curseur->get_prochain();
-    }
-}
-
-static void recherche_simple(const ListeTrajets& liste)
-{
-    char depart[46];
-    char arrivee[46];
-
-    std::cout << "Saisir la ville de depart et la ville d'arrivee: ";
-    std::cin >> depart >> arrivee;
-
-    std::cout << "Voici les trajets correspondants a votre recherche: " << std::endl;
-
-    NoeudTrajet* curseur = liste.get_premier();
-    bool found = false;
-    while(curseur != nullptr)
-    {
-        if(strcmp(curseur->get_trajet()->get_depart(), depart) == 0 && strcmp(curseur->get_trajet()->get_arrivee(), arrivee) == 0)
-        {
-            const char* output = curseur->get_trajet()->to_string();
-            std::cout << output << std::endl;
-            delete[] output;
-
-            found = true;
-        }
-
-        curseur = curseur->get_prochain();
-    }
-
-    if(!found)
-        std::cout << "Aucun trajet ne correspond a votre recherche.." << std::endl;
-}
-
-/*static bool recherche_depart(const ListeTrajets& liste, const char* depart, int (*indexes)[], int depth)
-{
-    NoeudTrajet* curseur = liste.get_premier();
-
-    int i = 0;
-    while(curseur != nullptr)
-    {
-        if(strcmp(curseur->get_trajet()->get_depart(), depart) == 0)
-            (*indexes)[i]++;
-
-        curseur = curseur->get_prochain();
-        
-        i++;
-    }
-
-    bool found = false;
-    for(int i = 0; i < liste.get_size(); ++i)
-        found |= (*indexes)[i] > depth;
-
-    return found;
-}*/
-
-/*
-static void recherche_avancee(const ListeTrajets& liste)
-{
-    char depart[46];
-    char arrivee[46];
-
-    std::cout << "Saisir la ville de depart et la ville d'arrivee: ";
-    std::cin >> depart >> arrivee;
-
-    std::cout << "Voici les trajets correspondants a votre recherche: " << std::endl;
-
-    bool found = false;
-
-    int indexes[liste.get_size()];
-
-    for(int i = 0; i < liste.get_size(); ++i)
-        indexes[i] = 0;
-
-    int depth = 0;
-
-    recherche_depart(liste, depart, &indexes, depth);
-    while(indexes != nullptr)
-    {
-        NoeudTrajet* curseur = liste.get_premier();
-        int i = 0;
-
-        while(curseur != nullptr)
-        {
-            if(strcmp(prochain->get_arrivee(), arrivee) == 0)
-            {
-                std::cout << prochain->to_string() << std::endl;
-                found = true;
-            }
-
-            i++;
-        }
-
-        indexes = recherche_depart(liste, prochain->get_arrivee());
-    }
-    
-
-    if(!found)
-        std::cout << "Aucun trajet ne correspond a votre recherche.." << std::endl;
-}
-*/

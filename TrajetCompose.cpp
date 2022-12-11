@@ -71,6 +71,8 @@ void TrajetCompose::afficher(std::ostream& sortie) const
 {
     NoeudTrajet* curseur = trajets->get_premier();
 
+    sortie << "[";
+
     while(curseur != nullptr)
     {
         if(curseur != trajets->get_premier())
@@ -81,7 +83,7 @@ void TrajetCompose::afficher(std::ostream& sortie) const
         curseur = curseur->get_prochain();
     }
 
-    sortie << trajets->get_dernier()->get_trajet()->get_arrivee();
+    sortie << " -> " << trajets->get_dernier()->get_trajet()->get_arrivee() << "]";
 }
 
 //------------------------------------------------------------------ PRIVE

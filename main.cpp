@@ -43,7 +43,7 @@ int main()
                 catalogue.recherche_simple();
                 break;
             case RECHERCHE_AVANCEE:
-                //catalogue.recherche_avancee();
+                catalogue.recherche_avancee();
                 break;
             case QUITTER:
                 open = false;

@@ -47,11 +47,15 @@ public:
     // Contrat :
     //
 
+    ListeTrajets (const ListeTrajets& autre);
+
     virtual ~ListeTrajets ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
+
+    ListeTrajets& operator=(const ListeTrajets& autre);
 
     void ajouter(const Trajet* trajet, const bool proprietaire = true);
     // Mode d'emploi :

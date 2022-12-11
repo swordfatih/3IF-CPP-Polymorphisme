@@ -42,6 +42,17 @@ ListeTrajets::ListeTrajets ( ) : premier(nullptr), dernier(nullptr), nb_trajets(
 #endif
 } //----- Fin de ListeTrajets
 
+ListeTrajets::ListeTrajets (const ListeTrajets& autre) : premier(nullptr), dernier(nullptr), nb_trajets(0)
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au constructeur de copie de <ListeTrajets>" << endl;
+#endif
+
+    *this = autre;
+} //----- Fin de ListeTrajets
+
 
 ListeTrajets::~ListeTrajets ( )
 // Algorithme :
@@ -60,6 +71,19 @@ ListeTrajets::~ListeTrajets ( )
         delete old;
     }
 } //----- Fin de ~ListeTrajets
+
+ListeTrajets& ListeTrajets::operator=(const ListeTrajets& autre)
+{
+    NoeudTrajet* curseur = autre.get_premier();
+
+    while(curseur != nullptr)
+    {
+        ajouter(curseur->get_trajet(), false);
+        curseur = curseur->get_prochain();
+    }
+
+    return *this;
+}
 
 NoeudTrajet* ListeTrajets::get_premier() const
 {

@@ -42,7 +42,7 @@ public:
     void ajouter_compose();
     void afficher();
     void recherche_simple();
-    // void recherche_avancee(const ListeTrajets& liste);
+    void recherche_avancee();
 
 //-------------------------------------------- Constructeurs - destructeur
     
@@ -62,7 +62,8 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-
+    const ListeTrajets recherche_departs(const char* depart);
+    void recherche_avancee_recursive(const char* arrivee, const ListeTrajets& departs, const ListeTrajets& courant = {});
 
 //----------------------------------------------------- Attributs protégés
     ListeTrajets trajets;

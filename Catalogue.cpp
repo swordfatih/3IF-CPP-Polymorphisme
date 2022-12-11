@@ -78,6 +78,8 @@ void Catalogue::afficher()
     while(curseur != nullptr)
     {
         curseur->get_trajet()->afficher(std::cout);
+        std::cout << std::endl;
+
         curseur = curseur->get_prochain();
     }
 }
@@ -99,6 +101,8 @@ void Catalogue::recherche_simple()
         if(strcmp(curseur->get_trajet()->get_depart(), depart) == 0 && strcmp(curseur->get_trajet()->get_arrivee(), arrivee) == 0)
         {
             curseur->get_trajet()->afficher(std::cout);
+            std::cout << std::endl;
+
             found = true;
         }
 
@@ -109,31 +113,56 @@ void Catalogue::recherche_simple()
         std::cout << "Aucun trajet ne correspond a votre recherche.." << std::endl;
 }
 
-/*static bool recherche_depart(const ListeTrajets& liste, const char* depart, int (*indexes)[], int depth)
+const ListeTrajets Catalogue::recherche_departs(const char* depart)
 {
-    NoeudTrajet* curseur = liste.get_premier();
+    ListeTrajets resultats;
+    NoeudTrajet* curseur = trajets.get_premier();
 
-    int i = 0;
     while(curseur != nullptr)
     {
         if(strcmp(curseur->get_trajet()->get_depart(), depart) == 0)
-            (*indexes)[i]++;
+            resultats.ajouter(curseur->get_trajet(), false);
 
         curseur = curseur->get_prochain();
-        
-        i++;
     }
 
-    bool found = false;
-    for(int i = 0; i < liste.get_size(); ++i)
-        found |= (*indexes)[i] > depth;
+    return resultats;
+}
 
-    return found;
-}*/
-
-/*
-static void recherche_avancee(const ListeTrajets& liste)
+void Catalogue::recherche_avancee_recursive(const char* arrivee, const ListeTrajets& departs, const ListeTrajets& courant)
 {
+    NoeudTrajet* curseur = departs.get_premier();
+
+    while(curseur != nullptr)
+    {
+        if(strcmp(curseur->get_trajet()->get_arrivee(), arrivee) == 0)
+        {
+            NoeudTrajet* curseur_resultat = courant.get_premier();
+
+            while(curseur_resultat != nullptr)
+            {
+                curseur_resultat->get_trajet()->afficher(std::cout);
+                std::cout << std::endl;
+
+                curseur_resultat = curseur_resultat->get_prochain();
+            }
+
+            curseur->get_trajet()->afficher(std::cout);
+            std::cout << std::endl;
+        }
+
+        ListeTrajets next = courant;
+        next.ajouter(curseur->get_trajet(), false);
+        
+        recherche_avancee_recursive(arrivee, recherche_departs(curseur->get_trajet()->get_arrivee()), next);
+
+        curseur = curseur->get_prochain();
+    }
+}
+
+void Catalogue::recherche_avancee()
+{
+    // Récupération des entrées
     char depart[46];
     char arrivee[46];
 
@@ -142,40 +171,9 @@ static void recherche_avancee(const ListeTrajets& liste)
 
     std::cout << "Voici les trajets correspondants a votre recherche: " << std::endl;
 
-    bool found = false;
-
-    int indexes[liste.get_size()];
-
-    for(int i = 0; i < liste.get_size(); ++i)
-        indexes[i] = 0;
-
-    int depth = 0;
-
-    recherche_depart(liste, depart, &indexes, depth);
-    while(indexes != nullptr)
-    {
-        NoeudTrajet* curseur = liste.get_premier();
-        int i = 0;
-
-        while(curseur != nullptr)
-        {
-            if(strcmp(prochain->get_arrivee(), arrivee) == 0)
-            {
-                std::cout << prochain->to_string() << std::endl;
-                found = true;
-            }
-
-            i++;
-        }
-
-        indexes = recherche_depart(liste, prochain->get_arrivee());
-    }
-    
-
-    if(!found)
-        std::cout << "Aucun trajet ne correspond a votre recherche.." << std::endl;
+    // Algorithme
+    recherche_avancee_recursive(arrivee, recherche_departs(depart));
 }
-*/
 
 //------------------------------------------------- Surcharge d'opérateurs
 

@@ -34,7 +34,7 @@ using namespace std;
 //-------------------------------------------- Constructeurs - destructeur
 
 
-TrajetSimple::TrajetSimple ( const char* depart, const char* arrivee)
+TrajetSimple::TrajetSimple (const char* depart, const char* arrivee)
 // Algorithme :
 //  
 

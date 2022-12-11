@@ -42,7 +42,7 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 
-    NoeudTrajet (const Trajet* t, NoeudTrajet* p);
+    NoeudTrajet (const Trajet* trajet, NoeudTrajet* prochain = nullptr, bool proprietaire = true);
     // Mode d'emploi :
     //
     // Contrat :
@@ -80,6 +80,7 @@ protected:
 //----------------------------------------------------- Attributs protégés
     const Trajet* trajet;
     NoeudTrajet* prochain;
+    const bool proprietaire;
 
 };
 

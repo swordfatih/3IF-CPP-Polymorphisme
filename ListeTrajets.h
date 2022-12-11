@@ -53,7 +53,7 @@ public:
     // Contrat :
     //
 
-    void ajouter(const Trajet* trajet);
+    void ajouter(const Trajet* trajet, const bool proprietaire = true);
     // Mode d'emploi :
     //
     // Contrat :

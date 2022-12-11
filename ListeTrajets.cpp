@@ -76,16 +76,16 @@ int ListeTrajets::get_size() const
     return nb_trajets;
 }
 
-void ListeTrajets::ajouter(const Trajet* trajet)
+void ListeTrajets::ajouter(const Trajet* trajet, const bool proprietaire)
 {
     if(premier == nullptr)
     {
-        premier = new NoeudTrajet(trajet, nullptr);
+        premier = new NoeudTrajet(trajet, nullptr, proprietaire);
         dernier = premier;
     }
     else
     {
-        dernier = dernier->set_prochain(new NoeudTrajet(trajet, nullptr));
+        dernier = dernier->set_prochain(new NoeudTrajet(trajet, nullptr, proprietaire));
     }
 
     nb_trajets++;

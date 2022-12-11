@@ -33,7 +33,7 @@ using namespace std;
 
 //-------------------------------------------- Constructeurs - destructeur
 
-NoeudTrajet::NoeudTrajet (const Trajet* t, NoeudTrajet* p = nullptr) : trajet(t), prochain(p)
+NoeudTrajet::NoeudTrajet (const Trajet* trajet, NoeudTrajet* prochain, bool proprietaire) : trajet(trajet), prochain(prochain), proprietaire(proprietaire)
 // Algorithme :
 //
 {
@@ -51,7 +51,11 @@ NoeudTrajet::~NoeudTrajet ( )
     cout << "Appel au destructeur de <NoeudTrajet>" << endl;
 #endif
 
-    delete trajet;
+    // On appelle le destructeur de trajet seulement s'il nous appartient
+    if(proprietaire)
+    {
+        delete trajet;
+    }
 } //----- Fin de ~NoeudTrajet
 
 NoeudTrajet* NoeudTrajet::set_prochain(NoeudTrajet* noeud)

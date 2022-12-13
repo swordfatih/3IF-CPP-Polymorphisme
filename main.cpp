@@ -1,7 +1,14 @@
-// Inclusions locales
+/*************************************************************************
+        main.cpp - affiche un menu et gère les entrées.
+                             -------------------
+    début                : 2022
+    copyright            : (C) 2022 par Fatih et Nihal
+*************************************************************************/
+
+// Include personnel
 #include "Catalogue.h"
 
-// Inclusions standards
+// Include système
 #include <iostream>
 
 // Structures et énumérations
@@ -18,9 +25,18 @@ enum Interaction
 // Prototypes
 const Interaction menu();
 
+// Tests
+#ifdef TEST
+    void test();
+#endif
+
 // Point d'entrée
 int main()
 {
+    #ifdef TEST
+        test();
+    #endif
+
     Catalogue catalogue;
 
     // Boucle principale
@@ -91,3 +107,16 @@ const Interaction menu()
 
     return static_cast<Interaction>(choix);
 }
+
+#ifdef TEST
+bool test()
+{
+    Catalogue catalogue;
+    catalogue.ajouter(new TrajetSimple("Paris", "Lyon", "Voiture"));
+
+    if(catalogue.get_size() != 1)
+        return false;
+
+    return true;
+}
+#endif

@@ -1,9 +1,9 @@
 /*************************************************************************
-                           NoeudTrajet  -  description
+    NoeudTrajet  -  classe représentant un noeud d'une liste chaînée 
+                    contenant un trajet
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 2022
+    copyright            : (C) 2022 par Fatih et Nihal
 *************************************************************************/
 
 //---------- Réalisation de la classe <NoeudTrajet> (fichier NoeudTrajet.cpp) ------------
@@ -17,35 +17,19 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "NoeudTrajet.h"
 
-//------------------------------------------------------------- Constantes
-
 //----------------------------------------------------------------- PUBLIC
 
-//----------------------------------------------------- Méthodes publiques
-// type NoeudTrajet::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
-
-//------------------------------------------------- Surcharge d'opérateurs
-
 //-------------------------------------------- Constructeurs - destructeur
-
 NoeudTrajet::NoeudTrajet (const Trajet* trajet, NoeudTrajet* prochain, bool proprietaire) : trajet(trajet), prochain(prochain), proprietaire(proprietaire)
-// Algorithme :
-//
+// Algorithme : constructeur par défaut
 {
 #ifdef MAP
     cout << "Appel au constructeur de <NoeudTrajet>" << endl;
 #endif
 } //----- Fin de NoeudTrajet
 
-
-NoeudTrajet::~NoeudTrajet ( )
-// Algorithme :
-//
+NoeudTrajet::~NoeudTrajet ()
+// Algorithme : désallocation de trajet
 {
 #ifdef MAP
     cout << "Appel au destructeur de <NoeudTrajet>" << endl;
@@ -58,24 +42,22 @@ NoeudTrajet::~NoeudTrajet ( )
     }
 } //----- Fin de ~NoeudTrajet
 
+//----------------------------------------------------- Méthodes publiques
 NoeudTrajet* NoeudTrajet::set_prochain(NoeudTrajet* noeud)
+// Algorithme : modifie prochain par noeud
 {
     prochain = noeud;
     return prochain;
-}
+} //----- Fin de set_prochain
 
 NoeudTrajet* NoeudTrajet::get_prochain() const
+// Algorithme : retourne prochain
 {
     return prochain;
-}
+} //----- Fin de get_prochain
 
 const Trajet* NoeudTrajet::get_trajet() const
+// Algorithme : retourne trajet
 {
     return trajet;
-}
-
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées
-
+} //----- Fin de get_trajet

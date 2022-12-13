@@ -56,6 +56,4 @@ protected:
 
 };
 
-//-------------------------------- Autres définitions dépendantes de <TrajetSimple>
-
 #endif // TRAJETSIMPLE_H

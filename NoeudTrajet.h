@@ -59,7 +59,5 @@ protected:
 
 };
 
-//-------------------------------- Autres définitions dépendantes de <NoeudTrajet>
-
 #endif // NOEUDTRAJET_H
 

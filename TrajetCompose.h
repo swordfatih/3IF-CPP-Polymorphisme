@@ -1,9 +1,8 @@
 /*************************************************************************
     TrajetCompose  -  représente un trajet composé de plusieurs trajets simples.
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 2022
+    copyright            : (C) 2022 par Fatih et Nihal
 *************************************************************************/
 
 //---------- Interface de la classe <TrajetCompose> (fichier TrajetCompose.h) ----------------
@@ -59,7 +58,5 @@ protected:
     const ListeTrajets* trajets; ///< Structure de données interne contenant les trajets simples composant le trajet composé
 
 };
-
-//-------------------------------- Autres définitions dépendantes de <TrajetCompose>
 
 #endif // TRAJETCOMPOSE_H

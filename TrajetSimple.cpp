@@ -63,7 +63,3 @@ void TrajetSimple::afficher(std::ostream& sortie) const
 {
     sortie << "de " << depart << " vers " << arrivee << " en " << moyen_de_transport;
 } //----- Fin de afficher
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées

@@ -1,9 +1,8 @@
 /*************************************************************************
-                           TrajetCompose  -  description
+    TrajetCompose  -  représente un trajet composé de plusieurs trajets simples.
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 2022
+    copyright            : (C) 2022 par Fatih et Nihal
 *************************************************************************/
 
 //---------- Réalisation de la classe <TrajetCompose> (fichier TrajetCompose.cpp) ------------
@@ -17,28 +16,12 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "TrajetCompose.h"
 
-//------------------------------------------------------------- Constantes
-
 //----------------------------------------------------------------- PUBLIC
 
-//----------------------------------------------------- Méthodes publiques
-// type TrajetCompose::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
-
-//------------------------------------------------- Surcharge d'opérateurs
-
 //-------------------------------------------- Constructeurs - destructeur
-
-
 TrajetCompose::TrajetCompose (const ListeTrajets* trajets) : 
     trajets(trajets)
-// Algorithme :
-//  
-
+// Algorithme : constructeur par défaut
 {
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetCompose>" << endl;
@@ -47,9 +30,7 @@ TrajetCompose::TrajetCompose (const ListeTrajets* trajets) :
 
 
 TrajetCompose::~TrajetCompose ( )
-// Algorithme :
-//
-
+// Algorithme : destructeur par défaut
 {
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetCompose>" << endl;
@@ -58,17 +39,23 @@ TrajetCompose::~TrajetCompose ( )
     delete trajets;
 } //----- Fin de ~TrajetCompose
 
+//----------------------------------------------------- Méthodes publiques
 const char* TrajetCompose::get_depart() const
+// Algorithme : retourne le départ du premier trajet de la liste
 {
     return trajets->get_premier()->get_trajet()->get_depart();
-}
+} //----- Fin de get_depart
 
 const char* TrajetCompose::get_arrivee() const
+// Algorithme : retourne l'arrivée du dernier trajet de la liste
 {
     return trajets->get_dernier()->get_trajet()->get_arrivee();
-}
+} //----- Fin de get_arrivee
 
+//------------------------------------------------- Surcharge d'opérateurs
 void TrajetCompose::afficher(std::ostream& sortie) const
+// Algorithme : appelle la fonction afficher de tous les trajets simples
+// qui composent le trajet composé
 {
     NoeudTrajet* curseur = trajets->get_premier();
 
@@ -81,8 +68,4 @@ void TrajetCompose::afficher(std::ostream& sortie) const
 
         curseur = curseur->get_prochain();
     }
-}
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées
+} //----- Fin de afficher

@@ -68,19 +68,6 @@ public:
     const unsigned int get_size() const;
     // Mode d'emploi : Récupérer le nombre d'élements dans le tableau.
 
-    NoeudTrajet* recherche_simple(const char* depart, const char* arrivee);
-    // Mode d'emploi : Recherche un trajet qui a pour ville de départ et
-    // ville d'arrivée les paramètres données.
-    //
-    // Contrat : depart et arrivee sont des chaînes de caractères valides.
-
-    NoeudTrajet* recherche_avancee(const char* depart, const char* arrivee);
-    // Mode d'emploi : Recherche un ensemble de trajets qui commence à la ville
-    // de départ donnée en paramètre et qui mène vers la ville d'arrivée donnée
-    // en paramètre.
-    //
-    // Contrat : depart et arrivee sont des chaînes de caractères valides.
-
 //------------------------------------------------------------------ PRIVE
 protected:
 
@@ -89,10 +76,7 @@ protected:
     NoeudTrajet* dernier;       ///< Noeud pointant sur le dernier trajet
     unsigned int nb_trajets;    ///< Nombre de trajets dans la liste
     const bool proprietaire;    ///< Si la liste doit désallouer elle-même les trajets
-
 };
-
-//-------------------------------- Autres définitions dépendantes de <ListeTrajets>
 
 #endif // LISTETRAJETS_H
 

@@ -1,9 +1,8 @@
 /*************************************************************************
-                           Trajet  -  description
+            Trajet  -  classe abstraite représentant quelconque trajet
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 2022
+    copyright            : (C) 2022 par Fatih et Nihal
 *************************************************************************/
 
 //---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
@@ -48,7 +47,5 @@ public:
     // Mode d'emploi : Récupérer la ville d'arrivée du trajet.
     // Fonction abstraite, à définir dans les classes filles.
 };
-
-//-------------------------------- Autres définitions dépendantes de <Trajet>
 
 #endif // TRAJET_H

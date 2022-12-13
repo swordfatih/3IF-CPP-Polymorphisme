@@ -1,9 +1,8 @@
 /*************************************************************************
-                           Trajet  -  description
+            Trajet  -  classe abstraite représentant quelconque trajet
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 2022
+    copyright            : (C) 2022 par Fatih et Nihal
 *************************************************************************/
 
 //---------- Réalisation de la classe <Trajet> (fichier Trajet.cpp) ------------
@@ -17,43 +16,21 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
 
-//------------------------------------------------------------- Constantes
-
 //----------------------------------------------------------------- PUBLIC
 
-//----------------------------------------------------- Méthodes publiques
-// type Trajet::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
-
-//------------------------------------------------- Surcharge d'opérateurs
-
-
 //-------------------------------------------- Constructeurs - destructeur
-
 Trajet::Trajet ( )
-// Algorithme :
-//
+// Algorithme : constructeur par défaut
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
 } //----- Fin de Trajet
 
-
 Trajet::~Trajet ( )
-// Algorithme :
-//
+// Algorithme : destructeur par défaut
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Trajet>" << endl;
 #endif
 } //----- Fin de ~Trajet
-
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées

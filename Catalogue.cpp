@@ -41,12 +41,6 @@ Catalogue::~Catalogue ( )
 } //----- Fin de ~Catalogue
 
 //----------------------------------------------------- Méthodes publiques
-// type Catalogue::Méthode ( trajets des paramètres )
-// Algorithme :
-//
-//{
-//}  Méthode
-
 void Catalogue::ajouter_simple()
 // Algorithme :
 {

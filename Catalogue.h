@@ -92,6 +92,4 @@ protected:
 
 };
 
-//-------------------------------- Autres définitions dépendantes de <Catalogue>
-
 #endif // CATALOGUE_H

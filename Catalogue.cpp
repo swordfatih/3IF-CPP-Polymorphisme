@@ -122,7 +122,7 @@ void Catalogue::recherche_simple()
         std::cout << "Aucun trajet ne correspond a votre recherche.." << std::endl;
 }
 
-const ListeTrajets Catalogue::recherche_departs(const char* depart)
+const ListeTrajets Catalogue::recherche_departs(const char* depart, const ListeTrajets& visites)
 {
     ListeTrajets resultats(false);
     NoeudTrajet* curseur = trajets.get_premier();
@@ -130,8 +130,25 @@ const ListeTrajets Catalogue::recherche_departs(const char* depart)
     while(curseur != nullptr)
     {
         if(std::strcmp(curseur->get_trajet()->get_depart(), depart) == 0)
-            resultats.ajouter(curseur->get_trajet());
+        {
+            NoeudTrajet* visite = visites.get_premier();
+            bool found = false;
 
+            while(visite != nullptr)
+            { 
+                if(visite->get_trajet() == curseur->get_trajet())
+                {
+                    found = true;
+                    break;
+                }
+                
+                visite = visite->get_prochain();
+            }
+
+            if(!found)
+                resultats.ajouter(curseur->get_trajet());
+        }
+            
         curseur = curseur->get_prochain();
     }
 
@@ -163,7 +180,8 @@ void Catalogue::recherche_avancee_recursive(const char* arrivee, const ListeTraj
         ListeTrajets next = courant;
         next.ajouter(curseur->get_trajet());
 
-        recherche_avancee_recursive(arrivee, recherche_departs(curseur->get_trajet()->get_arrivee()), next);
+        if(curseur->get_trajet()->get_arrivee() != arrivee)
+            recherche_avancee_recursive(arrivee, recherche_departs(curseur->get_trajet()->get_arrivee(), next), next);
 
         curseur = curseur->get_prochain();
     }

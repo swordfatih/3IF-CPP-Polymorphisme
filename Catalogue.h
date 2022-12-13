@@ -62,7 +62,7 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-    const ListeTrajets recherche_departs(const char* depart);
+    const ListeTrajets recherche_departs(const char* depart, const ListeTrajets& visites = {});
     void recherche_avancee_recursive(const char* arrivee, const ListeTrajets& departs, const ListeTrajets& courant = {});
 
 //----------------------------------------------------- Attributs protégés

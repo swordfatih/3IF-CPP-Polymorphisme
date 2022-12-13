@@ -50,6 +50,8 @@ int main()
                 break;
             default:
                 std::cout << "Commande inconnue, veuillez reessayer." << std::endl;
+                std::cin.clear();
+                std::cin.ignore();
                 break;
         }
     }

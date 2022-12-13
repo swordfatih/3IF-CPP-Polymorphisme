@@ -1,9 +1,8 @@
 /*************************************************************************
-                           TrajetSimple  -  description
+        TrajetSimple  -  représente un trajet direct entre deux villes.
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 2022
+    copyright            : (C) 2022 par Fatih et Nihal
 *************************************************************************/
 
 //---------- Interface de la classe <TrajetSimple> (fichier TrajetSimple.h) ----------------
@@ -12,60 +11,48 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Trajet.h"
-#include <cstring>
-
-//------------------------------------------------------------- Constantes
-
-//------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
 // Rôle de la classe <TrajetSimple>
 //
-//
+// Classe représentant un trajet direct entre deux villes par un moyen 
+// de transport.
 //------------------------------------------------------------------------
-
 class TrajetSimple : public Trajet
 {
+
 //----------------------------------------------------------------- PUBLIC
-
 public:
-//----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-    const char* get_depart() const;
-    const char* get_arrivee() const;
-    void afficher(std::ostream& sortie) const;
-
-//------------------------------------------------- Surcharge d'opérateurs
-    
 
 //-------------------------------------------- Constructeurs - destructeur
-    
-
     TrajetSimple (const char* depart, const char* arrivee, const char* moyen_de_transport);
-    // Mode d'emploi :
+    // Mode d'emploi : Constructeur du trajet.
     //
-    // Contrat :
-    //
+    // Contrat : Depart, arrivee et moyen_de_transport sont des chaînes
+    // de caractères valides.
 
-    virtual ~TrajetSimple ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    virtual ~TrajetSimple ();
+    // Mode d'emploi : Destructeur du trajet.
+
+//----------------------------------------------------- Méthodes publiques
+    const char* get_depart() const;
+    // Mode d'emploi : Récupérer la ville de départ
+
+    const char* get_arrivee() const;
+    // Mode d'emploi : Récupérer la ville d'arrivée
+
+//------------------------------------------------- Surcharge d'opérateurs
+    void afficher(std::ostream& sortie) const;
+    // Mode d'emploi : Sortir les informations de la ville
+    // sur le stream donné en paramètre (fichier ou sortie standard).
 
 //------------------------------------------------------------------ PRIVE
-
 protected:
-//----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    const char* depart;
-    const char* arrivee;
-    const char* moyen_de_transport;
+    const char* depart;             ///< Ville de départ du trajet
+    const char* arrivee;            ///< Ville d'arrivée du trajet
+    const char* moyen_de_transport; ///< Moyen de transport du trajet
 
 };
 

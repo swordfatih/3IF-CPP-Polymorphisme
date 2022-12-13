@@ -18,14 +18,13 @@
 // Structure de données contenant des trajets
 // Implémenté sous la forme d'une liste chaînée.
 //------------------------------------------------------------------------
-
 class ListeTrajets
 {
+
 //----------------------------------------------------------------- PUBLIC
-
 public:
-//-------------------------------------------- Constructeurs - destructeur
 
+//-------------------------------------------- Constructeurs - destructeur
     ListeTrajets (const bool proprietaire = true);
     // Mode d'emploi : Constructeur par défaut de ListeTrajets.
     //
@@ -40,14 +39,13 @@ public:
     virtual ~ListeTrajets ();
     // Mode d'emploi : Destructeur par défaut de ListeTrajets.
     
-    //------------------------------------------------- Surcharge d'opérateurs  
-
+//------------------------------------------------- Surcharge d'opérateurs  
     ListeTrajets& operator=(const ListeTrajets& autre);
     // Mode d'emploi : Opérateur d'affectation de ListeTrajets.
     // Les trajets ne sont pas copiés, seuls leurs pointeurs sont copiés.
     // La nouvelle liste n'est donc pas propriétaire des trajets.
 
-    //----------------------------------------------------- Méthodes publiques
+//----------------------------------------------------- Méthodes publiques
     void ajouter(const Trajet* trajet);
     // Mode d'emploi : Ajouter un trajet à la structure de données.
     // Le trajet est ajouté à la fin pour garder une ordonnancement.
@@ -58,13 +56,13 @@ public:
     // Mode d'emploi : Récupérer le premier noeud de la liste chaînée.
     // Permet d'itérer sur la liste chaînée du début à la fin.
     //
-    // Contrat : La valeur de retour est un pointeur null si la liste est vide.
+    // Contrat : La valeur de retour est un pointeur nul si la liste est vide.
 
     NoeudTrajet* get_dernier() const;
     // Mode d'emploi : Récupérer le dernier noeud de la liste chaînée.
     // Permet une insertion plus rapide.
     //
-    // Contrat : La valeur de retour est un pointeur null si la liste est vide.
+    // Contrat : La valeur de retour est un pointeur nul si la liste est vide.
     // La valeur de retour est le premier noeud si la liste a une taille de un.
 
     const unsigned int get_size() const;
@@ -84,9 +82,7 @@ public:
     // Contrat : depart et arrivee sont des chaînes de caractères valides.
 
 //------------------------------------------------------------------ PRIVE
-
 protected:
-//----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
     NoeudTrajet* premier;       ///< Noeud pointant sur le premier trajet 

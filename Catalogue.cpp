@@ -17,9 +17,28 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
 
-//------------------------------------------------------------- Constantes
-
 //----------------------------------------------------------------- PUBLIC
+
+//-------------------------------------------- Constructeurs - destructeur
+
+Catalogue::Catalogue ( )
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au constructeur de <Catalogue>" << endl;
+#endif
+} //----- Fin de Catalogue
+
+
+Catalogue::~Catalogue ( )
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au destructeur de <Catalogue>" << endl;
+#endif
+} //----- Fin de ~Catalogue
 
 //----------------------------------------------------- Méthodes publiques
 // type Catalogue::Méthode ( trajets des paramètres )
@@ -201,31 +220,6 @@ void Catalogue::recherche_avancee()
     // Algorithme
     recherche_avancee_recursive(arrivee, recherche_departs(depart));
 }
-
-//------------------------------------------------- Surcharge d'opérateurs
-
-
-//-------------------------------------------- Constructeurs - destructeur
-
-Catalogue::Catalogue ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de <Catalogue>" << endl;
-#endif
-} //----- Fin de Catalogue
-
-
-Catalogue::~Catalogue ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au destructeur de <Catalogue>" << endl;
-#endif
-} //----- Fin de ~Catalogue
-
 
 //------------------------------------------------------------------ PRIVE
 

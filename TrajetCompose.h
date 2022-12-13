@@ -14,9 +14,8 @@
 #include "ListeTrajets.h"
 #include <cstring>
 
-//------------------------------------------------------------- Constantes
-
 //------------------------------------------------------------------ Types
+typedef const char* Ville;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <TrajetCompose>
@@ -40,10 +39,10 @@ public:
     // Mode d'emploi : Constructeur du trajet.
 
 //----------------------------------------------------- Méthodes publiques
-    const char* get_depart() const;
+    Ville get_depart() const;
     // Mode d'emploi : Récupérer la ville de départ
 
-    const char* get_arrivee() const;
+    Ville get_arrivee() const;
     // Mode d'emploi : Récupérer la ville d'arrivée
 
 //------------------------------------------------- Surcharge d'opérateurs

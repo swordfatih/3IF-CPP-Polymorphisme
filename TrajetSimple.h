@@ -12,6 +12,9 @@
 //--------------------------------------------------- Interfaces utilisées
 #include "Trajet.h"
 
+//------------------------------------------------------------------ Types
+typedef const char* Ville;
+
 //------------------------------------------------------------------------
 // Rôle de la classe <TrajetSimple>
 //
@@ -25,7 +28,7 @@ class TrajetSimple : public Trajet
 public:
 
 //-------------------------------------------- Constructeurs - destructeur
-    TrajetSimple (const char* depart, const char* arrivee, const char* moyen_de_transport);
+    TrajetSimple (Ville depart, Ville arrivee, const char* moyen_de_transport);
     // Mode d'emploi : Constructeur du trajet.
     //
     // Contrat : Depart, arrivee et moyen_de_transport sont des chaînes
@@ -35,10 +38,10 @@ public:
     // Mode d'emploi : Destructeur du trajet.
 
 //----------------------------------------------------- Méthodes publiques
-    const char* get_depart() const;
+    Ville get_depart() const;
     // Mode d'emploi : Récupérer la ville de départ
 
-    const char* get_arrivee() const;
+    Ville get_arrivee() const;
     // Mode d'emploi : Récupérer la ville d'arrivée
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -50,8 +53,8 @@ public:
 protected:
 
 //----------------------------------------------------- Attributs protégés
-    const char* depart;             ///< Ville de départ du trajet
-    const char* arrivee;            ///< Ville d'arrivée du trajet
+    Ville depart;             ///< Ville de départ du trajet
+    Ville arrivee;            ///< Ville d'arrivée du trajet
     const char* moyen_de_transport; ///< Moyen de transport du trajet
 
 };

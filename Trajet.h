@@ -12,6 +12,9 @@
 //--------------------------------------------------- Interfaces utilisées
 #include <iostream>
 
+//------------------------------------------------------------------ Types
+typedef const char* Ville;
+
 //------------------------------------------------------------------------
 // Rôle de la classe <Trajet>
 //
@@ -39,11 +42,11 @@ public:
 
 //----------------------------------------------------- Méthodes publiques
     
-    virtual const char* get_depart() const = 0;
+    virtual Ville get_depart() const = 0;
     // Mode d'emploi : Récupérer la ville de départ du trajet.
     // Fonction abstraite, à définir dans les classes filles.
     
-    virtual const char* get_arrivee() const = 0;
+    virtual Ville get_arrivee() const = 0;
     // Mode d'emploi : Récupérer la ville d'arrivée du trajet.
     // Fonction abstraite, à définir dans les classes filles.
 };

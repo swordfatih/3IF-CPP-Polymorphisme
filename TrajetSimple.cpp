@@ -20,7 +20,7 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //-------------------------------------------- Constructeurs - destructeur
-TrajetSimple::TrajetSimple (const char* depart, const char* arrivee, const char* moyen_de_transport) : 
+TrajetSimple::TrajetSimple (Ville depart, Ville arrivee, Ville moyen_de_transport) : 
     depart(std::strcpy(new char[std::strlen(depart) + 1], depart)), 
     arrivee(std::strcpy(new char[std::strlen(arrivee) + 1], arrivee)),
     moyen_de_transport(std::strcpy(new char[std::strlen(moyen_de_transport) + 1], moyen_de_transport))
@@ -45,13 +45,13 @@ TrajetSimple::~TrajetSimple ( )
 } //----- Fin de ~TrajetSimple
 
 //----------------------------------------------------- Méthodes publiques
-const char* TrajetSimple::get_depart() const
+Ville TrajetSimple::get_depart() const
 // Algorithme : retourne depart
 {
     return depart;
 } //----- Fin de get_depart
 
-const char* TrajetSimple::get_arrivee() const
+Ville TrajetSimple::get_arrivee() const
 // Algorithme : retourne arrivee
 {
     return arrivee;

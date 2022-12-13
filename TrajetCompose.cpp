@@ -40,13 +40,13 @@ TrajetCompose::~TrajetCompose ( )
 } //----- Fin de ~TrajetCompose
 
 //----------------------------------------------------- Méthodes publiques
-const char* TrajetCompose::get_depart() const
+Ville TrajetCompose::get_depart() const
 // Algorithme : retourne le départ du premier trajet de la liste
 {
     return trajets->get_premier()->get_trajet()->get_depart();
 } //----- Fin de get_depart
 
-const char* TrajetCompose::get_arrivee() const
+Ville TrajetCompose::get_arrivee() const
 // Algorithme : retourne l'arrivée du dernier trajet de la liste
 {
     return trajets->get_dernier()->get_trajet()->get_arrivee();

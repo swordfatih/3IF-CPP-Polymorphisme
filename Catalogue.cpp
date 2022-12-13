@@ -140,7 +140,7 @@ void Catalogue::recherche_simple()
         std::cout << "Aucun trajet ne correspond a votre recherche.." << std::endl;
 } //----- Fin de recherche_simple
 
-const ListeTrajets Catalogue::recherche_departs(const char* depart, const ListeTrajets& visites)
+const ListeTrajets Catalogue::recherche_departs(Ville depart, const ListeTrajets& visites)
 // Algorithme : on parcourt tous les trajets en récupérant
 // ceux qui ont le départ souhaité et qui ne sont pas déjà
 // dans la liste visites donnée en paramètre
@@ -176,7 +176,7 @@ const ListeTrajets Catalogue::recherche_departs(const char* depart, const ListeT
     return resultats;
 } //----- Fin de recherche_departs
 
-void Catalogue::recherche_avancee_recursive(const char* arrivee, const ListeTrajets& departs, const ListeTrajets& courant)
+void Catalogue::recherche_avancee_recursive(Ville arrivee, const ListeTrajets& departs, const ListeTrajets& courant)
 // Algorithme : on parcourt tous les trajets tous les trajets donnés
 // dans la liste departs, qui correspondent aux prochains trajets à
 // visiter car ils partent de la ville courante.

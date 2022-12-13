@@ -14,6 +14,9 @@
 #include "TrajetCompose.h"
 #include "TrajetSimple.h"
 
+//------------------------------------------------------------------ Types
+typedef const char* Ville;
+
 //------------------------------------------------------------------------
 // Rôle de la classe <Catalogue>
 //
@@ -73,13 +76,13 @@ public:
 protected:
 
 //----------------------------------------------------- Méthodes protégées
-    const ListeTrajets recherche_departs(const char* depart, const ListeTrajets& visites = {});
+    const ListeTrajets recherche_departs(Ville depart, const ListeTrajets& visites = {});
     // Mode d'emploi : Recherche les trajets qui ont pour ville de départ le
     // paramètre donné et qui ne figurent pas dans la liste visite.
     //
     // Contrat : depart est une chaîne de caractères valide.
 
-    void recherche_avancee_recursive(const char* arrivee, const ListeTrajets& departs, const ListeTrajets& courant = {});
+    void recherche_avancee_recursive(Ville arrivee, const ListeTrajets& departs, const ListeTrajets& courant = {});
     // Mode d'emploi : Fonction algorithmique résursive permettant de trouver 
     // la prochaine étape pour construire un trajet qui correspond à la
     // recherche. 

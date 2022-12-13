@@ -95,7 +95,7 @@ NoeudTrajet* ListeTrajets::get_dernier() const
     return dernier;
 }
 
-int ListeTrajets::get_size() const
+const unsigned int ListeTrajets::get_size() const
 {
     return nb_trajets;
 }

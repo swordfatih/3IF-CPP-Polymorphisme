@@ -64,12 +64,12 @@ NoeudTrajet* NoeudTrajet::set_prochain(NoeudTrajet* noeud)
     return prochain;
 }
 
-NoeudTrajet* NoeudTrajet::get_prochain()
+NoeudTrajet* NoeudTrajet::get_prochain() const
 {
     return prochain;
 }
 
-const Trajet* NoeudTrajet::get_trajet()
+const Trajet* NoeudTrajet::get_trajet() const
 {
     return trajet;
 }

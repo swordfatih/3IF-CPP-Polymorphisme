@@ -60,13 +60,13 @@ public:
     // Contrat :
     //
 
-    NoeudTrajet* get_prochain();
+    NoeudTrajet* get_prochain() const;
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    const Trajet* get_trajet();
+    const Trajet* get_trajet() const;
     // Mode d'emploi :
     //
     // Contrat :

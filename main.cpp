@@ -23,11 +23,13 @@ int main()
 {
     Catalogue catalogue;
 
+    // Boucle principale
     bool open = true;
     while(open)
     {
         const Interaction choix = menu();
 
+        // Gestion des choix de l'utilisateur
         switch(choix)
         {
             case AJOUTER_SIMPLE:
@@ -59,6 +61,10 @@ int main()
     return 0;
 }
 
+// Mode d'emploi : L'utilisateur entre le nombre correspondant à son choix
+//
+// Contrat : L'utilisateur entre un entier positif valide
+//
 const Interaction menu()
 {
     std::cout << "_________________________________" << std::endl;
@@ -80,7 +86,7 @@ const Interaction menu()
     std::cout << "| Entrer votre choix :          |" << std::endl;
     std::cout << "|_______________________________|" << std::endl;
 
-    int choix;
+    unsigned int choix;
     std::cin >> choix;
 
     return static_cast<Interaction>(choix);

@@ -1,7 +1,7 @@
 OBJECTS := main.o Trajet.o NoeudTrajet.o ListeTrajets.o Catalogue.o TrajetSimple.o TrajetCompose.o
 OUTPUT := main
 CXX := g++
-CPPFLAGS := -ansi -pedantic -Wall -std=c++11 -DMAP
+CPPFLAGS := -ansi -pedantic -Wall -std=c++11
 
 main: $(OBJECTS)
 	$(CXX) -o $(OUTPUT) $(OBJECTS)

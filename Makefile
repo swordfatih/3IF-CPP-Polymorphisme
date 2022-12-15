@@ -1,16 +1,16 @@
 OBJECTS := main.o Trajet.o NoeudTrajet.o ListeTrajets.o Catalogue.o TrajetSimple.o TrajetCompose.o
-OUTPUT := main
+OUTPUT := trajets
 CXX := g++
 CPPFLAGS := -ansi -pedantic -Wall -std=c++11
+
+main: $(OBJECTS)
+	$(CXX) -o $(OUTPUT) $(OBJECTS)
 
 debug: CPPFLAGS := $(CPPFLAGS) -DMAP
 debug: main
 
 test: CPPFLAGS := $(CPPFLAGS) -DTEST
 test: main
-
-main: $(OBJECTS)
-	$(CXX) -o $(OUTPUT) $(OBJECTS)
 
 $(OBJECTS): $(@: .o = .cpp)
 	$(CXX) -c $(patsubst %.o, %.cpp, $@) $(CPPFLAGS) 

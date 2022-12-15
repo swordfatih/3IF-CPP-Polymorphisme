@@ -6,9 +6,11 @@ CPPFLAGS := -ansi -pedantic -Wall -std=c++11
 debug: CPPFLAGS := $(CPPFLAGS) -DMAP
 debug: main
 
+test: CPPFLAGS := $(CPPFLAGS) -DTEST
+test: main
+
 main: $(OBJECTS)
 	$(CXX) -o $(OUTPUT) $(OBJECTS)
-	rm -rf $(OBJECTS) 
 
 $(OBJECTS): $(@: .o = .cpp)
 	$(CXX) -c $(patsubst %.o, %.cpp, $@) $(CPPFLAGS) 

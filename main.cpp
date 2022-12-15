@@ -27,14 +27,18 @@ const Interaction menu();
 
 // Tests
 #ifdef TEST
-    void test();
+    bool test();
 #endif
 
 // Point d'entrée
 int main()
 {
     #ifdef TEST
-        test();
+        if(!test())
+        {
+            std::cerr << "Le programme a échoué les tests" << std::endl;
+            return -1;
+        }
     #endif
 
     Catalogue catalogue;
@@ -111,10 +115,10 @@ const Interaction menu()
 #ifdef TEST
 bool test()
 {
-    Catalogue catalogue;
-    catalogue.ajouter(new TrajetSimple("Paris", "Lyon", "Voiture"));
+    ListeTrajets liste;
+    liste.ajouter(new TrajetSimple("Paris", "Lyon", "Voiture"));
 
-    if(catalogue.get_size() != 1)
+    if(liste.get_size() != 1)
         return false;
 
     return true;

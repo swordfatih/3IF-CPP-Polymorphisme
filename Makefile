@@ -3,6 +3,9 @@ OUTPUT := main
 CXX := g++
 CPPFLAGS := -ansi -pedantic -Wall -std=c++11
 
+debug: CPPFLAGS := $(CPPFLAGS) -DMAP
+debug: main
+
 main: $(OBJECTS)
 	$(CXX) -o $(OUTPUT) $(OBJECTS)
 

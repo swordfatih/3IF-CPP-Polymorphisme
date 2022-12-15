@@ -1,9 +1,8 @@
 /*************************************************************************
-                           Catalogue  -  description
+    Catalogue  -  classe utilisateur pour gérer une catalogue de trajets.
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 2022
+    copyright            : (C) 2022 par Fatih et Nihal
 *************************************************************************/
 
 //---------- Réalisation de la classe <Catalogue> (fichier Catalogue.cpp) ------------
@@ -20,7 +19,6 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //-------------------------------------------- Constructeurs - destructeur
-
 Catalogue::Catalogue ( )
 // Algorithme :
 //
@@ -29,7 +27,6 @@ Catalogue::Catalogue ( )
     cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
 } //----- Fin de Catalogue
-
 
 Catalogue::~Catalogue ( )
 // Algorithme :

@@ -297,7 +297,7 @@ void Catalogue::charger()
     std::cout << "2. Ajouter un critere sur le type" << std::endl;
     std::cout << "3. Ajouter un critere sur la ville de depart" << std::endl;
     std::cout << "4. Ajouter un critere sur la ville d'arrivee" << std::endl;
-    std::cout << "5. Ajouter un critere sur la position" << std::endl;;
+    std::cout << "5. Ajouter un critere sur la position" << std::endl;
     
     int criteres = 0;
     bool demander = true;

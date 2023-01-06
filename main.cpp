@@ -10,6 +10,7 @@
 
 // Include système
 #include <iostream>
+#include <fstream>
 
 // Structures et énumérations
 enum Interaction 
@@ -19,6 +20,8 @@ enum Interaction
     RECHERCHE_SIMPLE,
     RECHERCHE_AVANCEE,
     AFFICHER,
+    SAUVEGARDE,
+    CHARGEMENT,
     QUITTER
 };
 
@@ -67,6 +70,28 @@ int main()
             case RECHERCHE_AVANCEE:
                 catalogue.recherche_avancee();
                 break;
+            case SAUVEGARDE:
+            {
+                std::cout << "on sauvegarde" << std::endl;
+                
+                std::ofstream ecriture("test");
+                ecriture << "salut";
+                ecriture.close();
+
+                break;
+            }
+            case CHARGEMENT:
+            {
+                std::cout << "on charge" << std::endl;
+
+                std::ifstream lecture("test");
+                char token[500];
+                lecture >> token;
+                std::cout << token << std::endl;
+                lecture.close();
+
+                break;
+            }
             case QUITTER:
                 open = false;
                 break;
@@ -100,7 +125,9 @@ const Interaction menu()
     std::cout << "|  3. Recherche simple          |" << std::endl;
     std::cout << "|  4. Recherche avancee         |" << std::endl;
     std::cout << "|  5. Afficher les trajets      |" << std::endl;
-    std::cout << "|  6. Quitter l'application     |" << std::endl;
+    std::cout << "|  6. Sauvegarder le catalogue  |" << std::endl;
+    std::cout << "|  7. Charger le catalogue      |" << std::endl;
+    std::cout << "|  8. Quitter l'application     |" << std::endl;
     std::cout << "|_______________________________|" << std::endl;
     std::cout << "|                               |" << std::endl;
     std::cout << "| Entrer votre choix :          |" << std::endl;

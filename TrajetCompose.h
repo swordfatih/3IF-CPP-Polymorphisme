@@ -46,9 +46,13 @@ public:
     // Mode d'emploi : Récupérer la ville d'arrivée
 
 //------------------------------------------------- Surcharge d'opérateurs
-    void afficher(std::ostream& sortie) const;
+    void afficher(std::ostream& sortie, bool serialization = false) const;
     // Mode d'emploi : Sortir les informations de la ville
     // sur le stream donné en paramètre (fichier ou sortie standard).
+    //
+    // Le paramètre serialization permet de définir le format d'affichage.
+    // S'il vaut true, le trajet sera affiché dans le format adapté à 
+    // la sauvegarde et au chargement.
 
 //------------------------------------------------------------------ PRIVE
 

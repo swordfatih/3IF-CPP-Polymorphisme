@@ -72,6 +72,10 @@ public:
     // Contrat : Les villes de départ et d'arrivée sont des chaînes
     // de caractères valides.
 
+    void sauvegarder();
+
+    void charger();
+
 //------------------------------------------------------------------ PRIVE
 protected:
 
@@ -89,6 +93,10 @@ protected:
     //
     // Contrat : arrivee est une chaîne de caractères valide.
     // departs contient les prochains trajets à traiter.
+
+    const TrajetSimple* parse_simple(const std::string& ligne) const;
+
+    const TrajetCompose* parse_compose(const std::string& ligne) const;
 
 //----------------------------------------------------- Attributs protégés
     ListeTrajets trajets; ///< Structure de donnée interne contenant les trajets

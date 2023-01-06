@@ -12,6 +12,9 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
 
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
@@ -226,3 +229,171 @@ void Catalogue::recherche_avancee()
     // Algorithme
     recherche_avancee_recursive(arrivee, recherche_departs(depart));
 } //---- Fin de recherche_avancee
+
+void Catalogue::sauvegarder()
+{
+    std::cout << "Saisir le chemin du fichier: ";
+
+    std::string chemin;
+    std::cin >> chemin;
+
+    std::ofstream ecriture(chemin);
+
+    NoeudTrajet* curseur = trajets.get_premier();
+
+    while(curseur != nullptr)
+    {
+        if(curseur != trajets.get_premier())
+            ecriture << std::endl;
+
+        curseur->get_trajet()->afficher(ecriture, true);
+        curseur = curseur->get_prochain();
+    }
+
+    ecriture.close();
+
+    std::cout << "Catalogue sauvegardé dans le fichier " << chemin << std::endl;
+} //---- Fin de sauvegarder
+
+const TrajetSimple* Catalogue::parse_simple(const std::string& ligne) const
+{
+    std::string depart, arrivee, moyen_de_transport;
+    std::stringstream flux(ligne);
+    std::getline(flux, depart, ',');
+    std::getline(flux, arrivee, ',');
+    std::getline(flux, moyen_de_transport);
+
+    return new TrajetSimple(depart.c_str(), arrivee.c_str(), moyen_de_transport.c_str());
+} //---- Fin de parse_simple
+
+const TrajetCompose* Catalogue::parse_compose(const std::string& ligne) const
+{
+    std::string depart, arrivee;
+
+    std::stringstream flux(ligne);
+    std::getline(flux, depart, ',');
+    std::getline(flux, arrivee, ';');
+
+    ListeTrajets* liste = new ListeTrajets();
+
+    std::string trajet;
+    while(std::getline(flux, trajet, ';'))
+    {
+        liste->ajouter(parse_simple(trajet.substr(trajet.find(',') + 1)));
+    }
+
+    return new TrajetCompose(liste);
+} //---- Fin de parse_compose
+
+void Catalogue::charger()
+{
+    std::cout << "Saisir le chemin du fichier: ";
+
+    std::string chemin;
+    std::cin >> chemin; 
+
+    int choix = 0;
+    std::cout << "1. Commencer le chargement" << std::endl;
+    std::cout << "2. Ajouter un critere sur le type" << std::endl;
+    std::cout << "3. Ajouter un critere sur la ville de depart" << std::endl;
+    std::cout << "4. Ajouter un critere sur la ville d'arrivee" << std::endl;
+    std::cout << "5. Ajouter un critere sur la position" << std::endl;;
+    
+    int criteres = 0;
+    bool demander = true;
+
+    std::string c_type, c_depart, c_arrivee;
+    int c_borne_inferieure, c_borne_superieure;
+
+    while(demander)
+    {
+        std::cout << "Saisir votre choix: ";
+        std::cin >> choix;
+        
+        switch(choix)
+        {
+            case 1:
+                demander = false;
+                break;
+            case 2:
+                std::cout << "Entrer le type de trajet que vous voulez: ";
+                std::cin >> c_type;
+
+                criteres |= 1;
+        
+                break;
+            case 3:
+                std::cout << "Entrer la ville de depart que vous voulez: ";
+                std::cin >> c_depart;
+
+                criteres |= 2;
+
+                break;
+            case 4:
+                std::cout << "Entrer la ville d'arrivee que vous voulez: ";
+                std::cin >> c_arrivee;
+
+                criteres |= 4;
+
+                break;
+            case 5:
+                std::cout << "Entrer la borne inferieure de l'intervalle de trajets que vous voulez: ";
+                std::cin >> c_borne_inferieure; 
+                std::cout << "Entrer la borne superieure de l'intervalle de trajets que vous voulez: ";
+                std::cin >> c_borne_superieure;
+
+                criteres |= 8;
+
+                break;
+            default:
+                std::cout << "Ce choix n'existe pas, veuillez ressayer" << std::endl;
+                break;
+        }
+    }
+
+    std::ifstream lecture(chemin);
+
+    std::string ligne;
+    int i = 0;
+
+    while(std::getline(lecture, ligne))
+    {
+        i++;
+
+        std::string type = ligne.substr(0, ligne.find(","));
+
+        if((criteres & 1) == 1 && c_type != type) // critere sur type
+            continue;
+
+        if((criteres & 8) == 8 && (i < c_borne_inferieure || i > c_borne_superieure)) // critere sur borne
+            continue;
+
+        std::string token = ligne.substr(ligne.find(",") + 1);
+
+        std::stringstream flux(token);
+        std::string depart, arrivee;
+        std::getline(flux, depart, ',');
+
+        if(type == "C")
+            std::getline(flux, arrivee, ';');
+        else if(type == "S")
+            std::getline(flux, arrivee, ',');
+
+        if((criteres & 2) == 2 && depart != c_depart) // critere sur depart
+            continue;
+
+        if((criteres & 4) == 4 && arrivee != c_arrivee) // critere sur arrivee
+            continue;
+
+        if(type == "S")
+        {
+            trajets.ajouter(parse_simple(token));
+        }
+        else if(type == "C")
+        {
+            trajets.ajouter(parse_compose(token));
+        }
+    }
+
+    lecture.close();
+} //---- Fin de charger

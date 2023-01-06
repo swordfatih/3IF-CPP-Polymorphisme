@@ -53,19 +53,36 @@ Ville TrajetCompose::get_arrivee() const
 } //----- Fin de get_arrivee
 
 //------------------------------------------------- Surcharge d'opérateurs
-void TrajetCompose::afficher(std::ostream& sortie) const
+void TrajetCompose::afficher(std::ostream& sortie, bool serialization) const
 // Algorithme : appelle la fonction afficher de tous les trajets simples
 // qui composent le trajet composé
 {
-    NoeudTrajet* curseur = trajets->get_premier();
-
-    while(curseur != nullptr)
+    if(serialization)
     {
-        if(curseur != trajets->get_premier())
-            sortie << " - ";
+        sortie << "C," << get_depart() << "," << get_arrivee();
 
-        curseur->get_trajet()->afficher(sortie);
+        NoeudTrajet* curseur = trajets->get_premier();
 
-        curseur = curseur->get_prochain();
+        while(curseur != nullptr)
+        {
+            sortie << ";";
+            curseur->get_trajet()->afficher(sortie, true);
+            curseur = curseur->get_prochain();
+        }
     }
+    else
+    {
+        NoeudTrajet* curseur = trajets->get_premier();
+
+        while(curseur != nullptr)
+        {
+            if(curseur != trajets->get_premier())
+                sortie << " - ";
+
+            curseur->get_trajet()->afficher(sortie);
+
+            curseur = curseur->get_prochain();
+        }
+    }
+    
 } //----- Fin de afficher

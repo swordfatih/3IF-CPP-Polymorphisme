@@ -36,9 +36,13 @@ public:
     // Classe abstraite sans attribut donc ne sert que pour débugger.
 
 //------------------------------------------------- Surcharge d'opérateurs
-   virtual void afficher(std::ostream& sortie) const = 0;
-   // Mode d'emploi : Sortir les informations de la ville
+    virtual void afficher(std::ostream& sortie, bool serialization = false) const = 0;
+    // Mode d'emploi : Sortir les informations de la ville
     // sur le stream donné en paramètre (fichier ou sortie standard).
+    //
+    // Le paramètre serialization permet de définir le format d'affichage.
+    // S'il vaut true, le trajet sera affiché dans le format adapté à 
+    // la sauvegarde et au chargement.
 
 //----------------------------------------------------- Méthodes publiques
     

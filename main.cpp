@@ -71,27 +71,11 @@ int main()
                 catalogue.recherche_avancee();
                 break;
             case SAUVEGARDE:
-            {
-                std::cout << "on sauvegarde" << std::endl;
-                
-                std::ofstream ecriture("test");
-                ecriture << "salut";
-                ecriture.close();
-
+                catalogue.sauvegarder();
                 break;
-            }
             case CHARGEMENT:
-            {
-                std::cout << "on charge" << std::endl;
-
-                std::ifstream lecture("test");
-                char token[500];
-                lecture >> token;
-                std::cout << token << std::endl;
-                lecture.close();
-
+                catalogue.charger();
                 break;
-            }
             case QUITTER:
                 open = false;
                 break;

@@ -58,8 +58,15 @@ Ville TrajetSimple::get_arrivee() const
 } //----- Fin de get_arrivee
 
 //------------------------------------------------- Surcharge d'opérateurs
-void TrajetSimple::afficher(std::ostream& sortie) const
+void TrajetSimple::afficher(std::ostream& sortie, bool serialization) const
 // Algorithme : envoie les informations vers le stream
 {
-    sortie << "de " << depart << " vers " << arrivee << " en " << moyen_de_transport;
+    if(serialization)
+    {
+        sortie << "S," << depart << "," << arrivee << "," << moyen_de_transport;
+    }
+    else
+    {
+        sortie << "de " << depart << " vers " << arrivee << " en " << moyen_de_transport;
+    }
 } //----- Fin de afficher

@@ -293,7 +293,8 @@ void Catalogue::charger()
     std::cin >> chemin; 
 
     int choix = 0;
-    std::cout << "1. Commencer le chargement" << std::endl;
+    std::cout << "Guide d'utilisation: " << std::endl;
+    std::cout << "1. Lancer le chargement" << std::endl;
     std::cout << "2. Ajouter un critere sur le type" << std::endl;
     std::cout << "3. Ajouter un critere sur la ville de depart" << std::endl;
     std::cout << "4. Ajouter un critere sur la ville d'arrivee" << std::endl;

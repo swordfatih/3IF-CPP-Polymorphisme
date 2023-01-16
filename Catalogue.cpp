@@ -302,15 +302,6 @@ void Catalogue::charger()
     std::string chemin;
     std::cin >> chemin; 
 
-    std::ifstream lecture(chemin);
-
-    // gestion des erreurs liées à l'ouverture du fichier
-    if(!lecture)
-    {
-        std::cout << "Erreur lors de l'ouverture du fichier " << chemin << std::endl;
-        return;
-    }
-
     // menu
     std::cout << "------------------------" << std::endl;
     std::cout << "Guide d'utilisation: " << std::endl;
@@ -349,7 +340,7 @@ void Catalogue::charger()
         if(c_selection)   
             std::cout << "Bornes: [" << v_borne_inferieure << ", " << v_borne_superieure << "]" << std::endl;
         if(!c_type && !c_depart && !c_arrivee && !c_selection)
-            std::cout << "[aucun]";
+            std::cout << "[aucun]" << std::endl;
 
         std::cout << std::endl;
         std::cout << "Saisir votre choix: ";
@@ -397,6 +388,15 @@ void Catalogue::charger()
     }
 
     // chargement du fichier
+    std::ifstream lecture(chemin);
+
+    // gestion des erreurs liées à l'ouverture du fichier
+    if(!lecture)
+    {
+        std::cout << "Erreur lors de l'ouverture du fichier " << chemin << std::endl;
+        return;
+    }
+
     std::string ligne;
     int i = 0;
 

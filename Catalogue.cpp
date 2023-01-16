@@ -438,4 +438,6 @@ void Catalogue::charger()
     }
 
     lecture.close();
+
+    std::cout << "Catalogue chargé depuis le fichier " << chemin << std::endl;
 } //---- Fin de charger

@@ -230,32 +230,8 @@ void Catalogue::recherche_avancee()
     recherche_avancee_recursive(arrivee, recherche_departs(depart));
 } //---- Fin de recherche_avancee
 
-void Catalogue::sauvegarder()
-{
-    std::cout << "Saisir le chemin du fichier: ";
-
-    std::string chemin;
-    std::cin >> chemin;
-
-    std::ofstream ecriture(chemin);
-
-    NoeudTrajet* curseur = trajets.get_premier();
-
-    while(curseur != nullptr)
-    {
-        if(curseur != trajets.get_premier())
-            ecriture << std::endl;
-
-        curseur->get_trajet()->afficher(ecriture, true);
-        curseur = curseur->get_prochain();
-    }
-
-    ecriture.close();
-
-    std::cout << "Catalogue sauvegardé dans le fichier " << chemin << std::endl;
-} //---- Fin de sauvegarder
-
 const TrajetSimple* Catalogue::parse_simple(const std::string& ligne) const
+// Algorithme : on récupère les informations du trajet simple
 {
     std::string depart, arrivee, moyen_de_transport;
     std::stringstream flux(ligne);
@@ -267,6 +243,7 @@ const TrajetSimple* Catalogue::parse_simple(const std::string& ligne) const
 } //---- Fin de parse_simple
 
 const TrajetCompose* Catalogue::parse_compose(const std::string& ligne) const
+// Algorithme : on récupère les informations du trajet composé
 {
     std::string depart, arrivee;
 
@@ -285,29 +262,94 @@ const TrajetCompose* Catalogue::parse_compose(const std::string& ligne) const
     return new TrajetCompose(liste);
 } //---- Fin de parse_compose
 
+void Catalogue::sauvegarder()
+// Algorithme : on parcourt tous les trajets et on les écrit dans le fichier
+{
+    std::cout << "Saisir le chemin du fichier: ";
+
+    std::string chemin;
+    std::cin >> chemin;
+
+    std::ofstream ecriture(chemin);
+
+    if(!ecriture)
+    {
+        std::cerr << "Erreur lors de l'ouverture du fichier " << chemin << std::endl;
+        return;
+    }
+
+    NoeudTrajet* curseur = trajets.get_premier();
+
+    while(curseur != nullptr)
+    {
+        if(curseur != trajets.get_premier())
+            ecriture << std::endl;
+
+        curseur->get_trajet()->afficher(ecriture, true);
+        curseur = curseur->get_prochain();
+    }
+
+    ecriture.close();
+
+    std::cout << "Catalogue sauvegardé dans le fichier " << chemin << std::endl;
+} //---- Fin de sauvegarder
+
 void Catalogue::charger()
+// Algorithme : on parcourt le fichier et on ajoute les trajets
 {
     std::cout << "Saisir le chemin du fichier: ";
 
     std::string chemin;
     std::cin >> chemin; 
 
-    int choix = 0;
+    std::ifstream lecture(chemin);
+
+    // gestion des erreurs liées à l'ouverture du fichier
+    if(!lecture)
+    {
+        std::cout << "Erreur lors de l'ouverture du fichier " << chemin << std::endl;
+        return;
+    }
+
+    // menu
+    std::cout << "------------------------" << std::endl;
     std::cout << "Guide d'utilisation: " << std::endl;
-    std::cout << "1. Lancer le chargement" << std::endl;
-    std::cout << "2. Ajouter un critere sur le type" << std::endl;
-    std::cout << "3. Ajouter un critere sur la ville de depart" << std::endl;
-    std::cout << "4. Ajouter un critere sur la ville d'arrivee" << std::endl;
-    std::cout << "5. Ajouter un critere sur la position" << std::endl;
+    std::cout << "- Appuyer sur 1 pour charger votre fichier" << std::endl;
+    std::cout << "- Vous pouvez aussi choisir des critères de selection (cumulable)" << std::endl;
+    std::cout << "  grâce aux choix 2, 3, 4 et 5." << std::endl;
+    std::cout << "------------------------" << std::endl;
+    std::cout << "1. Charger le fichier" << std::endl;
+    std::cout << std::endl;
+    std::cout << "Ajouter un critère de selection: " << std::endl;
+    std::cout << "2. Selon le type des trajets" << std::endl;
+    std::cout << "3. Selon la ville de depart" << std::endl;
+    std::cout << "4. Selon la ville d'arrivee" << std::endl;
+    std::cout << "5. Selon une selection de trajets [n, m]" << std::endl;
     
-    int criteres = 0;
+    // l'état des critères
+    bool c_type = false, c_depart = false, c_arrivee = false, c_selection = false;
+
+    // les valeurs des critères
+    std::string v_type, v_depart, v_arrivee;
+    int v_borne_inferieure, v_borne_superieure;
+
+    // selection de l'utilisateur
+    int choix = 0;
     bool demander = true;
-
-    std::string c_type, c_depart, c_arrivee;
-    int c_borne_inferieure, c_borne_superieure;
-
     while(demander)
     {
+        std::cout << std::endl;
+        std::cout << "Vous avez actuellement les critères suivants: " << std::endl;
+        if(c_type)
+            std::cout << "Type: " << v_type << std::endl;
+        if(c_depart)
+            std::cout << "Ville de depart: " << v_depart << std::endl;
+        if(c_arrivee)
+            std::cout << "Ville d'arrivee: " << v_arrivee << std::endl;
+        if(c_selection)   
+            std::cout << "Bornes: [" << v_borne_inferieure << ", " << v_borne_superieure << "]" << std::endl;
+
+        std::cout << std::endl;
         std::cout << "Saisir votre choix: ";
         std::cin >> choix;
         
@@ -318,32 +360,32 @@ void Catalogue::charger()
                 break;
             case 2:
                 std::cout << "Entrer le type de trajet que vous voulez: ";
-                std::cin >> c_type;
+                std::cin >> v_type;
 
-                criteres |= 1;
+                c_type = true;
         
                 break;
             case 3:
                 std::cout << "Entrer la ville de depart que vous voulez: ";
-                std::cin >> c_depart;
+                std::cin >> v_depart;
 
-                criteres |= 2;
+                c_depart = true;
 
                 break;
             case 4:
                 std::cout << "Entrer la ville d'arrivee que vous voulez: ";
-                std::cin >> c_arrivee;
+                std::cin >> v_arrivee;
 
-                criteres |= 4;
+                c_arrivee = true;
 
                 break;
             case 5:
                 std::cout << "Entrer la borne inferieure de l'intervalle de trajets que vous voulez: ";
-                std::cin >> c_borne_inferieure; 
+                std::cin >> v_borne_inferieure; 
                 std::cout << "Entrer la borne superieure de l'intervalle de trajets que vous voulez: ";
-                std::cin >> c_borne_superieure;
+                std::cin >> v_borne_superieure;
 
-                criteres |= 8;
+                c_selection = true;
 
                 break;
             default:
@@ -352,21 +394,20 @@ void Catalogue::charger()
         }
     }
 
-    std::ifstream lecture(chemin);
-
+    // chargement du fichier
     std::string ligne;
     int i = 0;
 
     while(std::getline(lecture, ligne))
     {
-        i++;
+        i++; // pour le critere sur borne
 
         std::string type = ligne.substr(0, ligne.find(","));
 
-        if((criteres & 1) == 1 && c_type != type) // critere sur type
+        if(c_type && v_type != type) // critere sur type
             continue;
 
-        if((criteres & 8) == 8 && (i < c_borne_inferieure || i > c_borne_superieure)) // critere sur borne
+        if(c_selection && (i < v_borne_inferieure || i > v_borne_superieure)) // critere sur borne
             continue;
 
         std::string token = ligne.substr(ligne.find(",") + 1);
@@ -380,10 +421,10 @@ void Catalogue::charger()
         else if(type == "S")
             std::getline(flux, arrivee, ',');
 
-        if((criteres & 2) == 2 && depart != c_depart) // critere sur depart
+        if(c_depart && depart != v_depart) // critere sur depart
             continue;
 
-        if((criteres & 4) == 4 && arrivee != c_arrivee) // critere sur arrivee
+        if(c_arrivee && arrivee != v_arrivee) // critere sur arrivee
             continue;
 
         if(type == "S")

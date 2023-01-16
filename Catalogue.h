@@ -73,8 +73,16 @@ public:
     // de caractères valides.
 
     void sauvegarder();
+    // Mode d'emploi : Sauvegarde les trajets du catalogue dans le fichier
+    // donné en paramètre.
+    //
+    // Contrat : Le fichier entré est valide et respecte le format demo.
 
     void charger();
+    // Mode d'emploi : Charge les trajets du fichier donné en paramètre
+    // dans le catalogue.
+    //
+    // Contrat : Le fichier entré est valide et respecte le format demo.
 
 //------------------------------------------------------------------ PRIVE
 protected:
@@ -95,8 +103,14 @@ protected:
     // departs contient les prochains trajets à traiter.
 
     const TrajetSimple* parse_simple(const std::string& ligne) const;
+    // Mode d'emploi : Parse une ligne de fichier pour créer un trajet simple.
+    //
+    // Contrat : La ligne respecte le format demo.
 
     const TrajetCompose* parse_compose(const std::string& ligne) const;
+    // Mode d'emploi : Parse une ligne de fichier pour créer un trajet composé.
+    //
+    // Contrat : La ligne respecte le format demo.
 
 //----------------------------------------------------- Attributs protégés
     ListeTrajets trajets; ///< Structure de donnée interne contenant les trajets

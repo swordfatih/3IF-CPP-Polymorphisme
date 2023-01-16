@@ -329,7 +329,7 @@ void Catalogue::charger()
     bool demander = true;
     while(demander)
     {
-        std::cout << std::endl;
+        std::cout << std::endl << "------------------------" << std::endl;
         std::cout << "Vous avez actuellement les critères suivants: " << std::endl;
         if(c_type)
             std::cout << "Type: " << v_type << std::endl;

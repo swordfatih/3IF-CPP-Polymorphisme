@@ -348,6 +348,8 @@ void Catalogue::charger()
             std::cout << "Ville d'arrivee: " << v_arrivee << std::endl;
         if(c_selection)   
             std::cout << "Bornes: [" << v_borne_inferieure << ", " << v_borne_superieure << "]" << std::endl;
+        if(!c_type && !c_depart && !c_arrivee && !c_selection)
+            std::cout << "[aucun]";
 
         std::cout << std::endl;
         std::cout << "Saisir votre choix: ";
